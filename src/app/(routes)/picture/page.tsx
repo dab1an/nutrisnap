@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Camera, Menu } from "lucide-react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { extractMealInfoFromImage } from "@/lib/ai";
 
 const Page = () => {
   return (
@@ -24,6 +25,7 @@ export default Page;
 export const CustomWebcam = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [imgSrc, setImgSrc] = useState<string | null>(null);
+  const [imageData, setImageData] = useState<string | null>(null);
 
   const startCamera = useCallback(async () => {
     try {
@@ -36,7 +38,7 @@ export const CustomWebcam = () => {
     }
   }, []);
 
-  const capture = useCallback(() => {
+  const capture = useCallback(async () => {
     if (videoRef.current) {
       const canvas = document.createElement("canvas");
       const video = videoRef.current;
@@ -47,6 +49,8 @@ export const CustomWebcam = () => {
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         const imageSrc = canvas.toDataURL("image/png");
         setImgSrc(imageSrc);
+        const response = await extractMealInfoFromImage(imageSrc);
+        setImageData(JSON.stringify(response, null, 2));
       }
     }
   }, []);
@@ -76,6 +80,9 @@ export const CustomWebcam = () => {
       ) : (
         <Button onClick={retake}>Retake</Button>
       )}
+
+      {imgSrc && !imageData && <p>Processing...</p>}
+      {imageData && <pre>{imageData}</pre>}
     </div>
   );
 };

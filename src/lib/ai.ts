@@ -1,3 +1,4 @@
+"use server";
 import { mealInsertSchema } from "@/schemas/meal";
 import Instructor from "@instructor-ai/instructor";
 import OpenAI from "openai";
@@ -19,7 +20,7 @@ const oai = new OpenAI({
 
 const client = Instructor({
   client: oai,
-  mode: "JSON",
+  mode: "MD_JSON",
 });
 
 //the response from gpt should have all the fields of mealInsertSchema except location and userId
@@ -28,6 +29,7 @@ const MealResponseModel = z.object({
     mealInsertSchema.omit({
       location: true,
       userId: true,
+      img: true,
     })
   ),
 });
@@ -38,6 +40,7 @@ const MealResponseModel = z.object({
  * @returns the extracted meal information
  */
 export async function extractMealInfoFromImage(image: string) {
+  console.log("extracting meal info from image");
   const response = await client.chat.completions.create({
     model: "gpt-4-vision-preview",
     response_model: {
@@ -60,6 +63,7 @@ export async function extractMealInfoFromImage(image: string) {
       },
     ],
   });
+  console.log(response);
 
   return response.meals;
 }
