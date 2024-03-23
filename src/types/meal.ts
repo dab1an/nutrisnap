@@ -1,4 +1,5 @@
 import z from "zod";
-import { mealSchema } from "@/schemas/meal";
+import { mealInsertSchema, mealSchema } from "@/schemas/meal";
 
 export type Meal = z.infer<typeof mealSchema>;
+export type MealInsert = z.infer<typeof mealInsertSchema>;
