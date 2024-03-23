@@ -13,7 +13,7 @@ const config = {
 
 const nextConfig = withPWA({
   dest: 'public',
-  disable: !isProduction,
+  // disable: !isProduction,
 })(config)
 
 export default nextConfig
