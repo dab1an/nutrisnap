@@ -7,9 +7,19 @@ export const mealSchema = z.object({
   protein: z.number(),
   carbs: z.number(),
   fat: z.number(),
+  fiber: z.number(),
   sugar: z.number(),
   img: z.string(),
   dateCreated: z.date(),
   location: z.string(),
   userId: z.string(),
+});
+
+export const mealInsertSchema = mealSchema.omit({
+  id: true,
+  dateCreated: true,
+});
+
+export const MealDTOSchema = mealInsertSchema.omit({
+  userId: true,
 });

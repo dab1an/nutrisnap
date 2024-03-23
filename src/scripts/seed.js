@@ -25,6 +25,7 @@ async function createTables(client) {
             "protein" BIGINT NOT NULL,
             "carbs" BIGINT NOT NULL,
             "fat" BIGINT NOT NULL,
+            "fiber" BIGINT NOT NULL,
             "sugar" BIGINT NOT NULL,
             "img" bytea NOT NULL,
             "dateCreated" DATE NOT NULL,
