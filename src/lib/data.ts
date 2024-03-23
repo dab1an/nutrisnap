@@ -1,9 +1,9 @@
 import { sql } from "@vercel/postgres";
 import type { Meal } from "@/types/meal";
 
-export async function getMeals() {
-  const userId = "123e4567-e89b-12d3-a456-426655440000"; //todo haha
+const userId = "dc21b61b-4d40-41ee-bb29-924f73b6cc00"; //todo haha
 
+export async function getMeals() {
   const { rows } =
     await sql<Meal>`SELECT * FROM meal where user_id = ${userId}`;
   return rows;
@@ -16,8 +16,6 @@ export async function getMeals() {
  * @returns An object containing the total calories, protein, carbohydrates, fiber, fat, and sugar consumed by the user in the given period
  */
 export async function getStats(period: "day" | "week" | "month" = "day") {
-  const userId = "123e4567-e89b-12d3-a456-426655440000"; //todo haha
-
   const { rows, fields } = await sql`
   WITH current_period AS (
     SELECT
