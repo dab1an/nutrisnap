@@ -14,7 +14,9 @@ export default function Error({
       <p className="text-center">
         The page does not exist or was removed! We suggest you back to home.
       </p>
-      <Button className="font-bold">Back to Home</Button>
+      <a href="/">
+        <Button className="font-bold">Back to Home</Button>
+      </a>
     </div>
   );
 }
