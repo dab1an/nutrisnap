@@ -5,7 +5,7 @@ const userId = "dc21b61b-4d40-41ee-bb29-924f73b6cc00"; //todo haha
 
 export async function getMeals() {
   const { rows } =
-    await sql<Meal>`SELECT * FROM meal where user_id = ${userId}`;
+    await sql<Meal>`SELECT * FROM meal where user_id = ${userId} ORDER BY created_at DESC;`;
   return rows;
 }
 

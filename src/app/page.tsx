@@ -9,7 +9,7 @@ export default async function Home() {
     <div>
       <h1>App</h1>
       <Link href="/picture">Picture</Link>
-      <h2>Meals: {JSON.stringify(meals)}</h2>
+      <h2>Meals: {JSON.stringify(meals, null, 2)}</h2>
     </div>
   );
 }
