@@ -7,6 +7,7 @@ export const mealSchema = z.object({
   protein: z.number(),
   carbs: z.number(),
   fat: z.number(),
+  fiber: z.number(),
   sugar: z.number(),
   img: z.string(),
   dateCreated: z.date(),
