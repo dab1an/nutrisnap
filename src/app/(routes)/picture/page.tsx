@@ -20,9 +20,6 @@ const Page = () => {
     <div className="container flex flex-col gap-10 items-center">
       <Navbar special={NavBarSpecial} />
       <CustomWebcam />
-      <a href="/" className="bg-red-500 text-white font-bold p-2 text-center">
-        Home
-      </a>
     </div>
   );
 };
