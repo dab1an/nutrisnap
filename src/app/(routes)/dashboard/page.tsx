@@ -100,14 +100,13 @@ export const FoodCard = ({
   const handleShowCalories = () => {
     setShowCalories(!showCalories);
   };
-  const nums = [0, 1, 2, 3, 4];
   return (
     <Accordion type="single" collapsible onClick={handleShowCalories}>
       <AccordionItem value="item-1" className="w-full">
         <AccordionTrigger className="flex justify-between items-center w-full gap-2">
           <div className="flex w-full justify-between">
             <p>{name}</p>
-            {!showCalories ? <p className="">233cal</p> : <p>2:30pm</p>}
+            {!showCalories ? <p className="">{calories}</p> : <p>2:30pm</p>}
           </div>
         </AccordionTrigger>
         <AccordionContent>
