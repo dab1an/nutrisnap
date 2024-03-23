@@ -19,3 +19,7 @@ export const mealInsertSchema = mealSchema.omit({
   id: true,
   dateCreated: true,
 });
+
+export const MealDTOSchema = mealInsertSchema.omit({
+  userId: true,
+});
