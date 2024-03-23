@@ -1,8 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { extractMealInfoFromImage } from "@/lib/ai";
 import { ArrowLeft, Camera, Menu } from "lucide-react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { extractMealInfoFromImage } from "@/lib/ai";
 
 const Page = () => {
   return (
@@ -26,7 +26,7 @@ export const CustomWebcam = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [imgSrc, setImgSrc] = useState<string | null>(null);
   const [imageData, setImageData] = useState<string | null>(null);
-
+  const [retakeState, setRetakeState] = useState<boolean>(false);
   const startCamera = useCallback(async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -57,11 +57,12 @@ export const CustomWebcam = () => {
 
   const retake = () => {
     setImgSrc(null);
+    setRetakeState(!retakeState);
   };
 
   useEffect(() => {
     startCamera();
-  }, [startCamera]);
+  }, [startCamera, retakeState]);
 
   return (
     <div className="flex flex-col items-center gap-10">
@@ -80,7 +81,6 @@ export const CustomWebcam = () => {
       ) : (
         <Button onClick={retake}>Retake</Button>
       )}
-
       {imgSrc && !imageData && <p>Processing...</p>}
       {imageData && <pre>{imageData}</pre>}
     </div>
