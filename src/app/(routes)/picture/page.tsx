@@ -1,18 +1,25 @@
 "use client";
+import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { extractMealInfoFromImage } from "@/lib/ai";
 import { ArrowLeft, Camera, Menu } from "lucide-react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-
 const Page = () => {
+  const NavBarSpecial = () => {
+    return (
+      // <a>
+      //   <p className="font-bold text-2xl">Welcome Back,</p>
+      //   <p className="text-primary font-bold text-2xl">Jacob</p>
+      // </a>
+      <a href="/">
+        <ArrowLeft />
+      </a>
+    );
+  };
   return (
     <div className="container flex flex-col gap-10 items-center">
-      <div className="flex w-full justify-between">
-        <ArrowLeft />
-        <Menu />
-      </div>
+      <Navbar special={NavBarSpecial} />
       <CustomWebcam />
-
       <a href="/" className="bg-red-500 text-white font-bold p-2 text-center">
         Home
       </a>
