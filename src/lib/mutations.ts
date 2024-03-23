@@ -13,6 +13,6 @@ export async function createMeal(mealProperties: MealDTO) {
   mealInsertSchema.parse(meal);
 
   const { rows, fields } =
-    await sql`INSERT INTO meals (name, calories, protein, carbs, fat, fiber, sugar, img, locaiton, userId) VALUES (${meal.name}, ${meal.calories}, ${meal.protein}, ${meal.carbs}, ${meal.fat}, ${meal.fiber} ${meal.sugar}, ${meal.img}, ${meal.location}, ${userId}`;
+    await sql`INSERT INTO meal (name, calories, protein, carbs, fat, fiber, sugar, img, locaiton, userId) VALUES (${meal.name}, ${meal.calories}, ${meal.protein}, ${meal.carbs}, ${meal.fat}, ${meal.fiber} ${meal.sugar}, ${meal.img}, ${meal.location}, ${userId}`;
   return rows;
 }

@@ -3,11 +3,20 @@ const { db } = require('@vercel/postgres');
 async function createTables(client) {
     try {
       await client.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
+      //drop tables
+        await client.query(`
+            DROP TABLE IF EXISTS "meal";
+        `);
+        console.log(`Dropped "meals" table`);
+        await client.query(`
+            DROP TABLE IF EXISTS "user";
+        `);
+        console.log(`Dropped "users" table`);
       
       await client.query(`
         CREATE TABLE IF NOT EXISTS "user" (
             "id" UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-            "createdAt" DATE NOT NULL,
+            "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
             "username" VARCHAR(255) NOT NULL,
             "name" VARCHAR(255) NOT NULL,
             "password" VARCHAR(255) NOT NULL,
@@ -28,9 +37,9 @@ async function createTables(client) {
             "fiber" BIGINT NOT NULL,
             "sugar" BIGINT NOT NULL,
             "img" bytea NOT NULL,
-            "dateCreated" DATE NOT NULL,
+            "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
             "location" VARCHAR(255),
-            "userId" UUID REFERENCES "user"("id")
+            "user_id" UUID REFERENCES "user"("id")
         );
       `);
   
