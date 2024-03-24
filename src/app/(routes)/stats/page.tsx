@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import { Stats } from "@/types/queries";
 import { useUserAuth } from "@/utils/hooks/useUserAuth";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 export default function Page() {
   const [macroType, setMacroType] = useState<string>("protein");
@@ -52,9 +53,12 @@ export default function Page() {
       console.error("Error", error);
     }
   };
-
+  const router = useRouter();
   if (!stats || loading) return <LoadingPage />;
-
+  if (loading) return <LoadingPage />;
+  if (!loading && !userData) {
+    router.push("/login");
+  }
   const ProfilePhoto = () => {
     if (loading) return <LoadingPage />;
     return (
