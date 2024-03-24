@@ -1,37 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+**Project Name:** NutriSnap
 
-## Getting Started
+**Description:**
+NutriSnap is 3-man team, innovative nutritional tracking application developed during HooHacks '24. Leveraging cutting-edge technologies such as Next.js, TypeScript, PostgreSQL, and Tailwind CSS, NutriSnap simplifies the process of monitoring and analyzing nutritional intake.
 
-First, run the development server:
+**Key Features:**
+- **Image Recognition:** Utilizes advanced image recognition algorithms to identify food items in user-uploaded images.
+- **Real-Time Nutritional Analysis:** Provides instant nutritional analysis of meals, including calorie count, macronutrient breakdown, and micronutrient information.
+- **Personalized Recommendations:** Offers personalized dietary recommendations based on user preferences, goals, and dietary restrictions.
+- **Interactive Dashboard:** Presents users with an intuitive dashboard to track their nutritional progress over time and set goals.
+- **Secure Authentication:** Implements robust authentication mechanisms to ensure user data privacy and security.
+- **Responsive Design:** Built with a responsive design approach, ensuring seamless user experience across various devices and screen sizes.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Technologies Used:**
+- Next.js: A React framework for building server-rendered applications.
+- TypeScript: A statically typed superset of JavaScript that enhances code maintainability and scalability.
+- PostgreSQL: A powerful open-source relational database management system used for storing and querying data.
+- Tailwind CSS: A utility-first CSS framework for creating custom-designed, responsive web applications.
+- And much much more!
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Getting Started:**
+1. Check out the deployed website! [NutriSnap](https://google.com)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Usage:**
+1. Register for an account or log in to an existing account.
+2. Upload images of your meals or manually input food items.
+3. View detailed nutritional analysis and personalized recommendations.
+4. Track your nutritional progress and set goals using the interactive dashboard.
+5. Explore additional features and functionalities to enhance your dietary journey.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# hoohacks-2024
+**Acknowledgments:**
+We would like to express our gratitude to the organizers of HooHacks '24 for providing the opportunity to develop this project.
