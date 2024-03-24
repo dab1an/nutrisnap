@@ -73,8 +73,6 @@ export const CustomWebcam = () => {
         console.log(imageSrc);
         const response = await extractMealInfoFromImage(imageSrc);
         revalidateTag("stats");
-        // console.log(response);
-        // setImageData(JSON.stringify(response, null, 2));
       }
     }
   }, []);
