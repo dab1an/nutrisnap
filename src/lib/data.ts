@@ -1,15 +1,15 @@
 import { sql } from "@vercel/postgres";
 import type { Meal } from "@/types/meal";
-import { createClient } from "@vercel/postgres";
 import { unstable_noStore as noStore } from "next/cache";
+import { Stats } from "@/types/queries";
 
-const userId = "a5b71dbc-4c6e-48cc-8bcf-5c955ee5cc97"; //todo haha
+const email = "jschuster8765@gmail.com"; //todo haha
 
 export async function getMeals() {
   noStore();
 
   const { rows } =
-    await sql<Meal>`SELECT * FROM meals where user_id = ${userId} ORDER BY created_at DESC;`;
+    await sql<Meal>`SELECT * FROM meals where user_email = ${email} ORDER BY created_at DESC;`;
   return rows;
 }
 
@@ -22,21 +22,6 @@ export async function getMeals() {
 export async function getStats(interval: "day" | "week" | "month" = "day") {
   const client = await sql.connect();
   const period = "week";
-
-  interface Stats {
-    total_calories: number;
-    total_sugar: number;
-    total_protein: number;
-    total_carbs: number;
-    total_fat: number;
-    total_fiber: number;
-    prev_period_calories: number;
-    prev_period_sugar: number;
-    prev_period_protein: number;
-    prev_period_carbs: number;
-    prev_period_fat: number;
-    prev_period_fiber: number;
-  }
 
   try {
     const { rows } = await client.query<Stats>(
@@ -58,16 +43,16 @@ export async function getStats(interval: "day" | "week" | "month" = "day") {
 FROM
     meals
 WHERE
-    user_id = $1
+    user_email = $1
 GROUP BY
     date_trunc($2::text, created_at)
 ORDER BY
     date_trunc($2::text, created_at) DESC;
       `,
-      [userId, interval]
+      [email, interval]
     );
 
-    return rows;
+    return rows[0];
   } finally {
     // await client.end();
   }
