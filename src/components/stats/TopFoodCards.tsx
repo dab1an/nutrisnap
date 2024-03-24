@@ -78,7 +78,7 @@ const TopFoodCards = ({ macroType }: IFoodCardProps) => {
   };
 
   return (
-    <>
+    <div className="w-full">
       {getTopThreeHighMacroMeals().map((meal: any, index: number) => (
         <FoodCard
           key={index}
@@ -91,7 +91,7 @@ const TopFoodCards = ({ macroType }: IFoodCardProps) => {
           sugar={meal.sugar}
         />
       ))}
-    </>
+    </div>
   );
 };
 

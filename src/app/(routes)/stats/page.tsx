@@ -13,7 +13,7 @@ import CompareCard from "@/components/stats/CompareCard";
 import TopFoodCards from "@/components/stats/TopFoodCards";
 
 export default function Page() {
-  const [macroType, setMacroType] = useState<string>("");
+  const [macroType, setMacroType] = useState<string>("protein");
   const handleChangeMacroType = (type: string) => {
     setMacroType(type);
   };
@@ -53,7 +53,7 @@ export const TopFoodCard = ({
   handleChangeMacroType: (type: string) => void;
 }) => {
   return (
-    <div className="flex flex-start">
+    <div className="flex flex-start w-full justfiy">
       <div className="flex items-center gap-2">
         <h1 className="font-extrabold text-xl"> Your top foods for </h1>
         <Select onValueChange={(val) => handleChangeMacroType(val)}>
@@ -61,11 +61,11 @@ export const TopFoodCard = ({
             <SelectValue placeholder="Protein" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="protein">Protein</SelectItem>
-            <SelectItem value="fat">Fat</SelectItem>
-            <SelectItem value="carbs">Carbs</SelectItem>
-            <SelectItem value="sugar">Sugar</SelectItem>
-            <SelectItem value="fiber">Fiber</SelectItem>
+            <SelectItem value="protein">protein</SelectItem>
+            <SelectItem value="fat">fat</SelectItem>
+            <SelectItem value="carbs">carbs</SelectItem>
+            <SelectItem value="sugar">sugar</SelectItem>
+            <SelectItem value="fiber">fiber</SelectItem>
           </SelectContent>
         </Select>
       </div>
