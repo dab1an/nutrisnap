@@ -30,13 +30,15 @@ const BottomNav = () => {
     <div className="fixed bg-background bottom-0 w-full border-t-2 border-foreground/40 h-[60px] flex items-center justify-evenly">
       {items.map((item) => {
         return (
-          <item.icon
-            key={item.name}
-            size={35}
-            className={`${
-              pathname === item.route ? "" : "text-muted-foreground"
-            }`}
-          />
+          <a href={item.route} className="cursor-pointer" key={item.name}>
+            <item.icon
+              key={item.name}
+              size={35}
+              className={`${
+                pathname === item.route ? "" : "text-muted-foreground"
+              }`}
+            />
+          </a>
         );
       })}
     </div>

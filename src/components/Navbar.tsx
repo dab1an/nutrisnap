@@ -92,11 +92,11 @@ const NavbarRouteButton = ({
   console.log(pathname, route);
   return (
     <a
-      href={`/${route}`}
+      href={route}
       className={`flex p-3 w-full gap-3 
        ${
          pathname && pathname === route ? "bg-primary/50" : "bg-transparent"
-       } rounded-lg`}
+       } rounded-lg cursor-pointer`}
     >
       <Icon />
       <p className="font-medium">{name}</p>

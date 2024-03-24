@@ -1,6 +1,4 @@
 "use client";
-import React from "react";
-import { VictoryPie } from "victory";
 import {
   Accordion,
   AccordionContent,
@@ -8,11 +6,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Progress } from "@/components/ui/progress";
-import { Dot } from "lucide-react";
-
-import { useState } from "react";
-
-interface Props {}
+import React, { useState } from "react";
+import { VictoryPie } from "victory";
 
 interface IProgressItemProps {
   title: string;
@@ -28,6 +23,66 @@ interface IFoodCardProps {
   fat: number;
   fiber: number;
   sugar: number;
+}
+const mockData = [
+  {
+    name: "Hamburger",
+    calories: 200,
+    protein: 300,
+    carbs: 3400,
+    fat: 39,
+    fiber: 293,
+    sugar: 223,
+    created_at: "2024-03-24T01:25:59.270Z",
+  },
+  {
+    name: "Hamburger",
+    calories: 200,
+    protein: 300,
+    carbs: 3400,
+    fat: 39,
+    fiber: 293,
+    sugar: 223,
+    created_at: "2024-03-23T01:25:59.270Z",
+  },
+  {
+    name: "Hamburger",
+    calories: 200,
+    protein: 300,
+    carbs: 3400,
+    fat: 39,
+    fiber: 293,
+    sugar: 223,
+    created_at: "2024-03-22T01:25:59.270Z",
+  },
+  {
+    name: "Hamburger",
+    calories: 200,
+    protein: 300,
+    carbs: 3400,
+    fat: 39,
+    fiber: 293,
+    sugar: 223,
+    created_at: "2024-03-21T01:25:59.270Z",
+  },
+  {
+    name: "Hamburger",
+    calories: 200,
+    protein: 300,
+    carbs: 3400,
+    fat: 39,
+    fiber: 293,
+    sugar: 223,
+    created_at: "2024-03-21T01:22:59.270Z",
+  },
+];
+function extractDateInfo(dateString: string) {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1; // Note: Month is zero-indexed
+  const day = date.getDate();
+
+  return { year, month, day };
 }
 const page = () => {
   return (
@@ -52,17 +107,29 @@ const page = () => {
         </div>
       </div>
       <div className="-mt-28 w-full z-10">
-        <h1 className="font-extrabold text-[20px]">Today's Stats</h1>
+        {mockData.map((data) => {
+          let prevDate = extractDateInfo(mockData[0].created_at);
+          return (
+            <div key={data.created_at}>
+              {extractDateInfo(data.created_at).day !== prevDate.day && (
+                <h1 className="font-extrabold text-[20px]">
+                  {"Today's Stats"}
+                </h1>
+              )}
+              <FoodCard
+                key={data.created_at}
+                name={data.name}
+                calories={data.calories}
+                protein={data.protein}
+                carbs={data.carbs}
+                fat={data.fat}
+                fiber={data.fiber}
+                sugar={data.sugar}
+              />
+            </div>
+          );
+        })}
       </div>
-      <FoodCard
-        name="Hambuger"
-        calories={200}
-        protein={300}
-        carbs={3400}
-        fat={39}
-        fiber={293}
-        sugar={223}
-      />
     </div>
   );
 };
@@ -75,7 +142,6 @@ const ProgressItem = ({ title, value, progressValue }: IProgressItemProps) => {
       <span>
         <span>{title}</span>
         <span> • </span>
-
         {title === "Calories" ? (
           <span>{value + "cal"}</span>
         ) : (
@@ -113,11 +179,7 @@ export const FoodCard = ({
         <AccordionTrigger className="flex justify-between items-center w-full gap-2">
           <div className="flex w-full justify-between">
             <p>{name}</p>
-            {!showCalories ? (
-              <p className="">{calories + "cal"}</p>
-            ) : (
-              <p>2:30pm</p>
-            )}
+            {!showCalories ? <p className="">{calories} Cal</p> : <p>2:30pm</p>}
           </div>
         </AccordionTrigger>
         <AccordionContent>
