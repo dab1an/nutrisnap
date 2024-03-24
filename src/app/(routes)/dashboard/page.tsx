@@ -222,7 +222,7 @@ export const FoodCard = ({ meal }: { meal: Meal }) => {
         <AccordionContent>
           <div className="flex gap-3 items-center">
             <img
-              className="w-[185px] h-[140px] rounded-md"
+              className="w-[185px] h-[140px] rounded-md object-cover"
               src={imageUrl}
               alt=""
             />
