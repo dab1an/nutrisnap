@@ -12,7 +12,7 @@ export const mealSchema = z.object({
   img: z.string(),
   dateCreated: z.date(),
   location: z.string(),
-  userId: z.string(),
+  user_email: z.string(),
 });
 
 export const mealInsertSchema = mealSchema.omit({
@@ -21,5 +21,5 @@ export const mealInsertSchema = mealSchema.omit({
 });
 
 export const MealDTOSchema = mealInsertSchema.omit({
-  userId: true,
+  user_email: true,
 });
