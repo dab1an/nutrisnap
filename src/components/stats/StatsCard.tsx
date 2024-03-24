@@ -2,6 +2,7 @@ import { getStats } from "@/lib/data";
 import React, { useEffect, useState } from "react";
 import MacroSummary from "./MacroSummary";
 import MacroWheel from "./MacroWheel";
+import { Stats } from "@/types/queries";
 const capCalories = 2500;
 const capProtien = 500;
 const capFat = 450;
@@ -12,7 +13,7 @@ const capFiber = 200;
 export default function StatsCard() {
   //   const stats = await getStats("day");
   const [mealRes, setMealRes] = useState<object[]>();
-  const [stats, setStats] = useState<object>();
+  const [stats, setStats] = useState<Stats>();
   useEffect(() => {
     getMeals();
     getStats("day");

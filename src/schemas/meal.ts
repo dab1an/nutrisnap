@@ -10,14 +10,14 @@ export const mealSchema = z.object({
   fiber: z.number(),
   sugar: z.number(),
   img: z.string(),
-  dateCreated: z.date(),
+  created_at: z.date(),
   location: z.string(),
   user_email: z.string(),
 });
 
 export const mealInsertSchema = mealSchema.omit({
   id: true,
-  dateCreated: true,
+  created_at: true,
 });
 
 export const MealDTOSchema = mealInsertSchema.omit({

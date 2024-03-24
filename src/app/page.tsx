@@ -18,7 +18,7 @@ export default function Home() {
   const RenderSpecial = () => {
     return <h2 className="font-bold">MyApp</h2>;
   };
-  const teamRef = useRef(null);
+  const teamRef: React.RefObject<HTMLDivElement> = useRef(null);
 
   const scrollToTeam = () => {
     if (teamRef.current) {
