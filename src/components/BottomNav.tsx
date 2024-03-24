@@ -27,7 +27,7 @@ const BottomNav = () => {
   ];
   const pathname = usePathname();
   return (
-    <div className="fixed bg-background bottom-0 w-full border-t-2 border-foreground/40 h-fit flex items-center justify-evenly pb-[30px] pt-[20px]">
+    <div className="fixed bg-background bottom-0 w-full border-t-2 border-foreground/40 h-fit lg:h-[55px] flex items-center justify-evenly pb-[30px] lg:pb-[20px] pt-[20px]">
       {items.map((item) => {
         return (
           <a href={item.route} className="cursor-pointer" key={item.name}>
