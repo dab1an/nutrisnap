@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { extractMealInfoFromImage } from "@/lib/ai";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";

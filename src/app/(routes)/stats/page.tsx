@@ -75,6 +75,7 @@ export default function Page() {
       <StatsCard stats={stats} />
       <TopFoodCard handleChangeMacroType={handleChangeMacroType} />
       <TopFoodCards macroType={macroType} />
+      <ComparisonHeader />
       <CompareCard stats={stats} />
     </div>
   );
@@ -101,6 +102,16 @@ export const TopFoodCard = ({
             <SelectItem value="fiber">fiber</SelectItem>
           </SelectContent>
         </Select>
+      </div>
+    </div>
+  );
+};
+
+export const ComparisonHeader = () => {
+  return (
+    <div className="flex flex-start w-full justfiy">
+      <div className="flex items-center gap-2">
+        <h1 className="font-extrabold text-xl"> {"Let's"} keep on track! </h1>
       </div>
     </div>
   );

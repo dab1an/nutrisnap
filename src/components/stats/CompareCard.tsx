@@ -24,7 +24,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
   }
 
   return (
-    <div className="w-[90%] h-[200px] ">
+    <div className="w-full h-[200px] ">
       <Carousel className="drop-shadow-md">
         <CarouselContent>
           <CarouselItem>

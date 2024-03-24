@@ -1,4 +1,6 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
+
 import LoadingPage from "@/components/LoadingPage";
 import Navbar from "@/components/Navbar";
 import ImageUploader from "@/components/image-taker";
