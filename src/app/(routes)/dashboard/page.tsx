@@ -565,7 +565,7 @@ const Page = () => {
     return groupedMeals;
   };
   const groupedMeals = groupMealsByDay(meals);
-  console.log(groupedMeals);
+  console.log(stats);
   return (
     <div className="container pt-5">
       <Navbar special={NavSpecial} />
@@ -574,7 +574,7 @@ const Page = () => {
           colorScale={["gray", "#539BF8"]}
           data={[
             { x: "total", y: 10500 },
-            { x: "blue", y: stats ? stats.total_calories : 0 },
+            { x: "blue", y: stats ? parseInt(stats.total_calories) : 0 },
           ]}
           startAngle={90}
           endAngle={-90}
@@ -585,7 +585,7 @@ const Page = () => {
           <p className="font-bold text-3xl">
             {stats ? stats.total_calories : 0}
           </p>
-          <p className="font-bold text-2x">/ 2500 cal</p>
+          <p className="font-bold text-2x">/ 10500 cal</p>
         </div>
       </div>
       <div className="-mt-28 w-full z-10">
@@ -704,27 +704,27 @@ export const FoodCard = ({
               <ProgressItem
                 title={"Protein"}
                 value={protein}
-                progressValue={Math.floor((100 * protein) / 600)}
+                progressValue={Math.floor((100 * protein) / 130)}
               />
               <ProgressItem
                 title={"Carbs"}
                 value={carbs}
-                progressValue={Math.floor((100 * carbs) / 500)}
+                progressValue={Math.floor((100 * carbs) / 280)}
               />
               <ProgressItem
                 title={"Fat"}
                 value={fat}
-                progressValue={Math.floor((100 * fat) / 450)}
+                progressValue={Math.floor((100 * fat) / 60)}
               />
               <ProgressItem
                 title={"Fiber"}
                 value={fiber}
-                progressValue={Math.floor((100 * fiber) / 200)}
+                progressValue={Math.floor((100 * fiber) / 38)}
               />
               <ProgressItem
                 title={"Sugar"}
                 value={sugar}
-                progressValue={Math.floor((100 * sugar) / 300)}
+                progressValue={Math.floor((100 * sugar) / 56)}
               />
             </div>
           </div>
