@@ -2,11 +2,17 @@ import { sql } from "@vercel/postgres";
 import type { Meal } from "@/types/meal";
 import { unstable_noStore as noStore } from "next/cache";
 import { Stats } from "@/types/queries";
+import { createClient } from "@/utils/supabase/server";
 
 const email = "jschuster8765@gmail.com"; //todo haha
 
 export async function getMeals() {
   noStore();
+  const supabase = createClient();
+
+  const user = await supabase.auth.getUser();
+  const email = user?.data.user?.email;
+  console.log("Email from supabase", email);
 
   const { rows } =
     await sql<Meal>`SELECT * FROM meals where user_email = ${email} ORDER BY created_at DESC;`;
