@@ -3,6 +3,8 @@ import { mealInsertSchema } from "@/schemas/meal";
 import Instructor from "@instructor-ai/instructor";
 import OpenAI from "openai";
 import { z } from "zod";
+import { createMeal } from "./mutations";
+import { NextResponse } from "next/server";
 
 const PROMPT = `
 You are a highly skilled dietary analyst tasked with providing detailed nutritional information for meals based on images. Your goal is to accurately identify all components of the meal and provide a comprehensive nutritional breakdown, including calories, macronutrients (protein, carbs, fat), and any other relevant details.
@@ -28,7 +30,7 @@ const MealResponseModel = z.object({
   meals: z.array(
     mealInsertSchema.omit({
       location: true,
-      userId: true,
+      user_email: true,
       img: true,
     })
   ),
@@ -40,7 +42,7 @@ const MealResponseModel = z.object({
  * @returns the extracted meal information
  */
 export async function extractMealInfoFromImage(image: string) {
-  console.log("extracting meal info from image");
+  console.log("extracting meal info from image", image);
   const response = await client.chat.completions.create({
     model: "gpt-4-vision-preview",
     response_model: {
@@ -63,7 +65,20 @@ export async function extractMealInfoFromImage(image: string) {
       },
     ],
   });
+
   console.log(response);
 
-  return response.meals;
+  for (const meal of response.meals) {
+    const dto = {
+      ...meal,
+      img: image,
+      location: "Home",
+    };
+
+    const res = await createMeal(dto);
+    console.log("meal inserted", res);
+  }
+
+  //redirect to the dashboard
+  return NextResponse.redirect("http://localhost:3000/dashboard");
 }

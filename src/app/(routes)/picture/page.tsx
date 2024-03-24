@@ -67,9 +67,10 @@ export const CustomWebcam = () => {
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         const imageSrc = canvas.toDataURL("image/png");
         setImgSrc(imageSrc);
+        console.log(imageSrc);
         const response = await extractMealInfoFromImage(imageSrc);
-        console.log(response);
-        setImageData(JSON.stringify(response, null, 2));
+        // console.log(response);
+        // setImageData(JSON.stringify(response, null, 2));
       }
     }
   }, []);
