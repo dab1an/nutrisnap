@@ -15,12 +15,12 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
     return percentageDiff;
   }
   return (
-    <div className="w-[90%] h-[200px] ">
+    <div className="w-full h-[200px] ">
       <Carousel className="drop-shadow-md">
         <CarouselContent>
           <CarouselItem>
             <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
-              <div className="flex flex-col items-center justify-center">
+              <div className="flex flex-col items-center justify-center text-xl">
                 <h1>{"Today's"} Calories Intake is </h1>
                 {percentageDifference(
                   stats.previous.total_calories,
@@ -35,7 +35,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
                     ) + "% higher "}
                   </h1>
                 ) : (
-                  <h1 className="text-destructive font-bold">
+                  <h1 className="text-destructive font-bold ">
                     {Math.floor(
                       percentageDifference(
                         stats.previous.total_calories,
@@ -51,7 +51,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
           <CarouselItem>
             <div className="flex justify-center items-center h-[250px] rounded-md bg-white">
               <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center text-xl">
                   <h1>{"Today's"} Protein Intake is </h1>
                   {percentageDifference(
                     stats.previous.total_protein,
@@ -83,7 +83,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
           <CarouselItem>
             <div className="flex justify-center items-center h-[250px] rounded-md bg-white">
               <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center text-xl">
                   <h1>{"Today's"} Fat Intake is </h1>
                   {percentageDifference(
                     stats.previous.total_fat,
@@ -115,7 +115,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
           <CarouselItem>
             <div className="flex justify-center items-center h-[250px] rounded-md bg-white">
               <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center text-xl">
                   <h1>{"Today's"} Carbs Intake is </h1>
                   {percentageDifference(
                     stats.previous.total_carbs,
@@ -147,7 +147,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
           <CarouselItem>
             <div className="flex justify-center items-center h-[250px] rounded-md bg-white">
               <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center text-xl">
                   <h1>{"Today's"} Sugar Intake is </h1>
                   {percentageDifference(
                     stats.previous.total_sugar,
@@ -179,7 +179,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
           <CarouselItem>
             <div className="flex justify-center items-center h-[250px] rounded-md bg-white">
               <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center text-xl">
                   <h1>{"Today's"} Fiber Intake is </h1>
                   {percentageDifference(
                     stats.previous.total_fiber,

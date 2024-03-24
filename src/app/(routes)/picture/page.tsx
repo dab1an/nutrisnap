@@ -11,6 +11,8 @@ import { ArrowLeft, Camera, Menu } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { FoodCard } from "../dashboard/page";
+import { revalidateTag } from "next/cache";
+
 const Page = () => {
   const NavBarSpecial = () => {
     return (
@@ -72,6 +74,7 @@ export const CustomWebcam = () => {
         setImgSrc(imageSrc);
         console.log(imageSrc);
         const response = await extractMealInfoFromImage(imageSrc);
+        revalidateTag("stats");
         // console.log(response);
         // setImageData(JSON.stringify(response, null, 2));
       }
