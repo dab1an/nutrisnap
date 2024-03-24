@@ -109,7 +109,7 @@ const Page = () => {
             { x: "total", y: 2500 },
             {
               x: "blue",
-              y: stats ? parseInt(stats.current.total_calories) : 0,
+              y: stats?.current.total_calories ?? 0,
             },
           ]}
           startAngle={90}
