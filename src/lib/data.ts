@@ -23,11 +23,26 @@ export async function getStats(interval: "day" | "week" | "month" = "day") {
   const client = await sql.connect();
   const period = "week";
 
+  interface Stats {
+    total_calories: number;
+    total_sugar: number;
+    total_protein: number;
+    total_carbs: number;
+    total_fat: number;
+    total_fiber: number;
+    prev_period_calories: number;
+    prev_period_sugar: number;
+    prev_period_protein: number;
+    prev_period_carbs: number;
+    prev_period_fat: number;
+    prev_period_fiber: number;
+  }
+
   try {
-    const { rows } = await client.query(
+    const { rows } = await client.query<Stats>(
       `
     SELECT
-    date_trunc($2::text, created_at) AS period,
+    --date_trunc($2::text, created_at) AS period,
     SUM(calories) AS total_calories,
     SUM(sugar) AS total_sugar,
     SUM(protein) AS total_protein,
