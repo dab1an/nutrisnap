@@ -36,7 +36,8 @@ export default function Page() {
       const response = await fetch(
         `/auth/get-stats?email=jschuster8765@gmail.com&period=${period}`,
         {
-          method: "POST",
+          method: "GET",
+          next: { tags: ["stats"] },
           headers: { "Content-Type": "application/json" },
         }
       );

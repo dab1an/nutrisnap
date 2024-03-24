@@ -59,7 +59,8 @@ const Page = () => {
       const response = await fetch(
         `/auth/get-stats?email=${"jschuster8765@gmail.com"}&period=${period}`,
         {
-          method: "POST",
+          next: { tags: ["stats"] },
+          method: "GET",
           headers: { "Content-Type": "application/json" },
         }
       );
@@ -91,7 +92,6 @@ const Page = () => {
   };
 
   const router = useRouter();
-  const [currentDate, setCurrentDate] = useState(null);
 
   if (loading) return <LoadingPage />;
   if (!loading && !userData) {

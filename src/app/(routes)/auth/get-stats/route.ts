@@ -5,7 +5,7 @@ import { stat } from "fs";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-export async function POST(request: NextRequest) {
+export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const email = searchParams.get("email");
   const period = searchParams.get("period") ?? "day";
