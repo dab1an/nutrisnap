@@ -25,7 +25,6 @@ interface IMacroSummaryProps {
   left: number;
 }
 
-<<<<<<< HEAD
 async function page() {
   const stats_raw = await getStats("day");
   const stats = stats_raw[0];
@@ -38,14 +37,6 @@ async function page() {
   const capCarbs = 500;
   const capSugar = 300;
   const capFiber = 200;
-=======
-import { getStats } from "@/lib/data";
-
-async function page() {
-  const stats = await getStats("day");
-  console.log(stats);
-  return <p>{JSON.stringify(stats)}</p>;
->>>>>>> 278c2821a51033a3b6f5d2d0db87c9641b7d2504
 
   return (
     <div className="container pt-12 flex flex-col  justify-center gap-6">
