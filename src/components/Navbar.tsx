@@ -64,7 +64,7 @@ const Navbar = ({ special: Special }: { special: any }) => {
   };
 
   return (
-    <div className="flex w-full justify-between h-[60px] items-center mt-5">
+    <div className="flex w-full justify-between h-[60px] items-center">
       <Special />
       <Sheet>
         <SheetTrigger>
