@@ -48,13 +48,18 @@ const Navbar = ({ special: Special }: { special: any }) => {
   const supabase = createClientComponentClient();
   const router = useRouter();
   const { userData, loading } = useUserAuth();
+  const pathname = usePathname();
   const handleLogout = async () => {
     console.log("logout");
     const { error } = await supabase.auth.signOut();
     if (error) {
       alert(error.message);
     } else {
-      router.push("/");
+      if (pathname !== "/") {
+        router.push("/");
+      } else {
+        window.location.reload();
+      }
     }
   };
 

@@ -1,13 +1,10 @@
 import { getMeals, getStats } from "@/lib/data";
 import { Stats } from "@/types/queries";
+import { useUserAuth } from "@/utils/hooks/useUserAuth";
+import { useEffect, useState } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-
-export default async function MacroWheel() {
-  // console.log(await getStats("day"));
-  await getMeals();
-  const stats = {};
-  //   const stats = await getStats("day");
-
+export default function MacroWheel({ stats }: { stats: object }) {
+  console.log(stats);
   return (
     <div className="relative flex items-center h-44 w-44 justify-center">
       <CircularProgressbar
@@ -52,7 +49,7 @@ export default async function MacroWheel() {
       />
       <CircularProgressbar
         className="h-[150px] absolute"
-        value={Math.floor((stats.total_protein / 500) * 100)}
+        value={Math.floor((stats.total_protein / 600) * 100)}
         text={""}
         strokeWidth={5}
         styles={buildStyles({

@@ -75,8 +75,7 @@ export const CustomWebcam = () => {
     startCamera();
   }, [startCamera, retakeState]);
   if (loading) return <div>Loading...</div>;
-  if (!userData) {
-    alert("Please login to view this page. Redirecting to login page...");
+  if (!loading && !userData) {
     router.push("/login");
   }
   return (

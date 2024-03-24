@@ -1,7 +1,7 @@
-import { sql } from "@vercel/postgres";
 import type { Meal } from "@/types/meal";
-import { unstable_noStore as noStore } from "next/cache";
 import { Stats } from "@/types/queries";
+import { sql } from "@vercel/postgres";
+import { unstable_noStore as noStore } from "next/cache";
 // import { createClient } from "@/utils/supabase/server";
 
 const email = "jschuster8765@gmail.com"; //todo haha
