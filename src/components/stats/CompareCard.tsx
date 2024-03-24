@@ -21,7 +21,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
           <CarouselItem>
             <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
               <div className="flex flex-col items-center justify-center">
-                <h1>Today's Calories Intake is </h1>
+                <h1>{"Today's"} Calories Intake is </h1>
                 {percentageDifference(
                   stats.previous.total_calories,
                   stats.current.total_calories
@@ -44,7 +44,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
                     ) + "% lower "}
                   </h1>
                 )}
-                <h1>than yesterday's</h1>
+                <h1>than {"yesterday's"}</h1>
               </div>
             </div>
           </CarouselItem>
@@ -52,7 +52,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
             <div className="flex justify-center items-center h-[250px] rounded-md bg-white">
               <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
                 <div className="flex flex-col items-center justify-center">
-                  <h1>Today's Protein Intake is </h1>
+                  <h1>{"Today's"} Protein Intake is </h1>
                   {percentageDifference(
                     stats.previous.total_protein,
                     stats.current.total_protein
@@ -75,7 +75,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
                       ) + "% lower "}
                     </h1>
                   )}
-                  <h1>than yesterday's</h1>
+                  <h1>than {"yesterday's"}</h1>
                 </div>
               </div>
             </div>
@@ -84,7 +84,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
             <div className="flex justify-center items-center h-[250px] rounded-md bg-white">
               <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
                 <div className="flex flex-col items-center justify-center">
-                  <h1>Today's Fat Intake is </h1>
+                  <h1>{"Today's"} Fat Intake is </h1>
                   {percentageDifference(
                     stats.previous.total_fat,
                     stats.current.total_fat
@@ -107,7 +107,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
                       ) + "% lower "}
                     </h1>
                   )}
-                  <h1>than yesterday's</h1>
+                  <h1>than {"yesterday's"}</h1>
                 </div>
               </div>
             </div>
@@ -116,7 +116,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
             <div className="flex justify-center items-center h-[250px] rounded-md bg-white">
               <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
                 <div className="flex flex-col items-center justify-center">
-                  <h1>Today's Carbs Intake is </h1>
+                  <h1>{"Today's"} Carbs Intake is </h1>
                   {percentageDifference(
                     stats.previous.total_carbs,
                     stats.current.total_carbs
@@ -139,7 +139,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
                       ) + "% lower "}
                     </h1>
                   )}
-                  <h1>than yesterday's</h1>
+                  <h1>than {"yesterday's"}</h1>
                 </div>
               </div>
             </div>
@@ -148,7 +148,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
             <div className="flex justify-center items-center h-[250px] rounded-md bg-white">
               <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
                 <div className="flex flex-col items-center justify-center">
-                  <h1>Today's Sugar Intake is </h1>
+                  <h1>{"Today's"} Sugar Intake is </h1>
                   {percentageDifference(
                     stats.previous.total_sugar,
                     stats.current.total_sugar
@@ -171,7 +171,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
                       ) + "% lower "}
                     </h1>
                   )}
-                  <h1>than yesterday's</h1>
+                  <h1>than {"yesterday's"}</h1>
                 </div>
               </div>
             </div>
@@ -180,7 +180,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
             <div className="flex justify-center items-center h-[250px] rounded-md bg-white">
               <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
                 <div className="flex flex-col items-center justify-center">
-                  <h1>Today's Fiber Intake is </h1>
+                  <h1>{"Today's"} Fiber Intake is </h1>
                   {percentageDifference(
                     stats.previous.total_fiber,
                     stats.current.total_fiber
@@ -203,7 +203,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
                       ) + "% lower "}
                     </h1>
                   )}
-                  <h1>than yesterday's</h1>
+                  <h1>than {"yesterday's"}</h1>
                 </div>
               </div>
             </div>
