@@ -191,7 +191,12 @@ const ProgressItem = ({ title, value, progressValue }: IProgressItemProps) => {
 };
 
 export const FoodCard = ({ meal }: { meal: Meal }) => {
-  const { name, calories, protein, carbs, fat, fiber, sugar, img } = meal;
+  const { name, calories, protein, carbs, fat, fiber, sugar, img, created_at } =
+    meal;
+  const time = new Date(created_at).toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
   const [showCalories, setShowCalories] = useState(false);
 
   const imageUrl = Buffer.from((img as any).data).toString();
@@ -211,7 +216,7 @@ export const FoodCard = ({ meal }: { meal: Meal }) => {
         <AccordionTrigger className="flex justify-between items-center w-full gap-2">
           <div className="flex w-full justify-between">
             <p className="text-start font-thin text-[17px]">{name}</p>
-            {!showCalories ? <p className="">{calories} Cal</p> : <p>2:30pm</p>}
+            {!showCalories ? <p className="">{calories} Cal</p> : <p>{time}</p>}
           </div>
         </AccordionTrigger>
         <AccordionContent>
