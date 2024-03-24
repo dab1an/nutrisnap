@@ -5,11 +5,11 @@ async function createTables(client) {
       await client.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
       //drop tables
         await client.query(`
-            DROP TABLE "meals";
+            DROP TABLE IF EXISTS "meals";
         `);
         console.log(`Dropped "meals" table`);
         await client.query(`
-            DROP TABLE "users";
+            DROP TABLE IF EXISTS "users";
         `);
         console.log(`Dropped "users" table`);
       
@@ -30,12 +30,12 @@ async function createTables(client) {
     CREATE TABLE IF NOT EXISTS "meals" (
         "id" UUID DEFAULT uuid_generate_v4(),
         "name" VARCHAR(255) NOT NULL,
-        "calories" INTEGER NOT NULL,
-        "protein" BIGINT NOT NULL,
-        "carbs" BIGINT NOT NULL,
-        "fat" BIGINT NOT NULL,
-        "fiber" BIGINT NOT NULL,
-        "sugar" BIGINT NOT NULL,
+        "calories" DECIMAL NOT NULL,
+        "protein" DECIMAL NOT NULL,
+        "carbs" DECIMAL NOT NULL,
+        "fat" DECIMAL NOT NULL,
+        "fiber" DECIMAL NOT NULL,
+        "sugar" DECIMAL NOT NULL,
         "img" bytea NOT NULL,
         "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
         "location" VARCHAR(255),
@@ -43,7 +43,6 @@ async function createTables(client) {
         PRIMARY KEY ("id")
       );
 `);
-
   
       console.log(`Created "meals" table`);
     } catch (err) {
@@ -70,7 +69,7 @@ async function createTables(client) {
     await client.query(`
       INSERT INTO "meals" ("name", "calories", "protein", "carbs", "fat", "fiber", "sugar", "img", "location", "user_email", "created_at")
       VALUES
-      ('Oatmeal with Blueberries', 300, 10, 50, 5, 8, 15, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-10 12:00:00'),
+      ('Oatmeal with Blueberries', 300.0, 10.0, 50.0, 5.0, 8.0, 15.0, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-10 12:00:00'),
       ('Grilled Chicken Salad', 450, 35, 20, 18, 5, 10, E'\\\\xFFD8FFE000104A46494600010101006000', 'Restaurant', '${email}', '2024-03-11 12:00:00'),
       ('Beef Stir-fry with Rice', 550, 30, 60, 20, 5, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-12 12:00:00'),
       ('Veggie Omelet', 280, 18, 12, 16, 3, 6, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-13 12:00:00'),
@@ -88,7 +87,8 @@ async function createTables(client) {
       ('Beef and Broccoli', 500, 35, 40, 20, 6, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-24 12:00:00'),
       ('Chicken Fajitas', 550, 35, 45, 20, 8, 5, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-23 02:00:00'),
       ('Spinach Salad with Grilled Shrimp', 400, 30, 20, 15, 6, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Restaurant', '${email}', '2024-03-23 00:00:00'),
-      ('Beef and Broccoli', 500, 35, 40, 20, 6, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-23 12:00:00')
+      ('Beef and Broccoli', 500, 35, 40, 20, 6, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-23 12:00:00'),
+      ('Beef Wellington', 1200, 30, 100, 70, 5, 10, E'\\\\xFFD8FFE000104A46494600010101006000', 'Homet', '${email}', '2024-03-23 07:00:00')
     `);
   }
 
