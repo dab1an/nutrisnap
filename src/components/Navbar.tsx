@@ -72,7 +72,7 @@ const Navbar = ({ special: Special }: { special: any }) => {
         </SheetTrigger>
         <SheetContent>
           <SheetHeader className="flex flex-col items-center gap-3 h-1/5">
-            <SheetTitle>AppName</SheetTitle>
+            <SheetTitle>NutriSnap</SheetTitle>
             <ModeToggle />
           </SheetHeader>
           <div className="flex flex-col justify-between h-4/5">

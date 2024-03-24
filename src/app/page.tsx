@@ -16,7 +16,7 @@ import {
 } from "react";
 export default function Home() {
   const RenderSpecial = () => {
-    return <h2 className="font-bold">MyApp</h2>;
+    return <h2 className="font-bold">NutriSnap</h2>;
   };
   const teamRef: React.RefObject<HTMLDivElement> = useRef(null);
 
@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-start container gap-3">
       <Navbar special={RenderSpecial} />
-      <CustomBadge>Introducing MyApp</CustomBadge>
+      <CustomBadge>Introducing NutriSnap</CustomBadge>
       <Hero scrollToTeam={scrollToTeam} />
       <div ref={teamRef}>
         <CustomBadge className="mt-10">The Team</CustomBadge>
@@ -62,7 +62,7 @@ const Hero = ({ scrollToTeam }: { scrollToTeam: () => void }) => {
         The Ultimate Food Picture to Nutrition Solution
       </h1>
       <p className="text-base text-foreground/60 text-center">
-        Transform your dining experience with our app! Snap a pic of your meal
+        Transform your dining experience with NutriSnap! Snap a pic of your meal
         and unlock its nutrition facts instantly. Harnessing AI, we provide
         real-time nutritional analysis, empowering you to make informed choices
         effortlessly.
