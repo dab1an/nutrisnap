@@ -25,7 +25,7 @@ export default function Home() {
     }
   };
   return (
-    <div className="flex flex-col items-start container gap-3 pb-28">
+    <div className="flex flex-col items-start container gap-3">
       <Navbar special={RenderSpecial} />
       <CustomBadge>Introducing MyApp</CustomBadge>
       <Hero scrollToTeam={scrollToTeam} />
