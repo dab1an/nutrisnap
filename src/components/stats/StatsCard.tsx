@@ -63,10 +63,10 @@ export default function StatsCard() {
   };
   if (!stats) return <div>Loading...</div>;
   return (
-    <div className="w-full drop-shadow-lg bg-foreground/10 h-[325px] flex flex-col rounded-md px-4  gap-2">
+    <div className="w-full bg-foreground/5 h-[325px] flex flex-col rounded-md px-4  gap-2">
       <div className="flex items-center w-full gap-6 pt-2 ">
         <div className="flex flex-col">
-          <h1 className="text-lg font-extrabold">Daily Cals.</h1>
+          <h1 className="text-lg font-extrabold">Daily cals.</h1>
           <h1 className="font-bold">{stats.total_calories + " cals."}</h1>
           <h1 className="text-[#C3BEBE] font-bold ">
             {Math.max(capCalories - stats.total_calories, 0) + " cals. left"}

@@ -33,7 +33,7 @@ export default function MacroSummary({
         <div className="text-sm">{title}</div>
       </div>
       <div className="text-[#C3BEBE]">
-        <span className="text-[9.5px]">{curr + "g"}</span>
+        <span className="text-[9.5px] text-foreground">{curr + "g"}</span>
         <span className="text-sm"> • </span>
         <span className="text-[9.5px]">{Math.max(left, 0) + "g left"}</span>
       </div>
