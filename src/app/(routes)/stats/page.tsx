@@ -12,17 +12,48 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Stats } from "@/types/queries";
 import { useUserAuth } from "@/utils/hooks/useUserAuth";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 export default function Page() {
   const [macroType, setMacroType] = useState<string>("protein");
+  const [stats, setStats] = useState<Stats>();
   const handleChangeMacroType = (type: string) => {
     setMacroType(type);
   };
-
   const { userData, loading } = useUserAuth();
   const atLoc = userData?.email?.indexOf("@");
   const email = userData?.email?.slice(0, atLoc);
+
+  useEffect(() => {
+    console.log("use effect");
+    getStats("day");
+  }, []);
+
+  const getStats = async (period: string) => {
+    console.log("getting stats");
+    try {
+      const response = await fetch(
+        `/auth/get-stats?email=jschuster8765@gmail.com&period=${period}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      if (response.ok) {
+        const res = await response.json();
+        setStats(res.data as Stats);
+      } else {
+        const error = await response.json();
+        console.log(error);
+      }
+    } catch (error) {
+      console.error("Error", error);
+    }
+  };
+
+  if (!stats || loading) return <LoadingPage />;
+
   const ProfilePhoto = () => {
     if (loading) return <LoadingPage />;
     return (
@@ -35,16 +66,15 @@ export default function Page() {
       </div>
     );
   };
-  if (loading) return <LoadingPage />;
   return (
     <div className="container flex flex-col  justify-center items-center gap-6">
       <div className="w-full mb-2">
         <Navbar special={ProfilePhoto} />
       </div>
-      <StatsCard />
+      <StatsCard stats={stats} />
       <TopFoodCard handleChangeMacroType={handleChangeMacroType} />
       <TopFoodCards macroType={macroType} />
-      <CompareCard />
+      <CompareCard stats={stats} />
     </div>
   );
 }
