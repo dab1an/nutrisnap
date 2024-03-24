@@ -111,6 +111,7 @@ const TheTeam = () => {
 
   useEffect(() => {
     shuffleMembers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const shuffleMembers = () => {
