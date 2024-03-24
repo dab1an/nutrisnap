@@ -80,5 +80,5 @@ export async function extractMealInfoFromImage(image: string) {
   }
 
   //redirect to the dashboard
-  return NextResponse.redirect("http://localhost:3000/dashboard");
+  // return NextResponse.redirect("http://localhost:3000/dashboard");
 }
