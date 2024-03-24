@@ -82,8 +82,12 @@ const Page = () => {
     const email = userData?.email?.slice(0, atLoc);
     return (
       <div className="flex flex-col">
-        <h1 className="font-extrabold text-[26px]">Welcome back,</h1>
-        <h1 className="font-extrabold text-[26px] text-primary">{email}</h1>
+        <h1 className="font-extrabold text-[26px] lg:text-[34px]">
+          Welcome back,
+        </h1>
+        <h1 className="font-extrabold text-[26px] lg:text-[34px] text-primary">
+          {email}
+        </h1>
       </div>
     );
   };
@@ -98,14 +102,14 @@ const Page = () => {
 
   console.log(stats);
   return (
-    <div className="container">
+    <div className="container lg:pt-14 lg:px-52  lg:flex lg:flex-col lg:items-center">
       <Navbar special={NavSpecial} />
-      <div className="relative w-full -z-10">
+      <div className="relative w-full -z-10 lg:w-[500px]">
         <VictoryPie
           colorScale={["gray", "#539BF8"]}
           data={[
-            { x: "total", y: 2500 },
-            { x: "blue", y: stats ? parseInt(stats.total_calories) : 0 },
+            { x: "total", y: 10500 },
+            { x: "blue", y: stats ? stats.total_calories : 0 },
           ]}
           startAngle={90}
           endAngle={-90}
@@ -113,13 +117,13 @@ const Page = () => {
           labels={() => ""}
         />
         <div className="absolute font-bold  inset-0 w-fit h-5 mx-auto my-auto -top-32 flex flex-col items-center">
-          <p className="font-bold text-3xl">
+          <p className="font-bold text-3xl lg:text-5xl">
             {stats ? stats.total_calories : 0}
           </p>
-          <p className="font-bold text-2x">/ 2500 cal</p>
+          <p className="font-bold lg:text-2xl">/ 10500 cal</p>
         </div>
       </div>
-      <div className="-mt-28 w-full z-10">
+      <div className="-mt-28 lg:-mt-52 w-full z-10">
         {meals?.map((meal, index) => {
           const previousMeal = meals[index - 1];
           const currentDate = new Date(meal.created_at);
@@ -135,7 +139,7 @@ const Page = () => {
           return (
             <React.Fragment key={index}>
               {isNewDay && (
-                <h1 className="font-extrabold text-[20px] mt-5">
+                <h1 className="font-extrabold text-[20px] mt-5 lg:mt-8">
                   {currentDate.toLocaleDateString("en-US", {
                     weekday: "long",
                     year: "numeric",
@@ -205,7 +209,7 @@ export const FoodCard = ({ meal }: { meal: Meal }) => {
       <AccordionItem value="item-1" className="w-full">
         <AccordionTrigger className="flex justify-between items-center w-full gap-2">
           <div className="flex w-full justify-between">
-            <p className="text-start">{name}</p>
+            <p className="text-start font-thin text-[17px]">{name}</p>
             {!showCalories ? <p className="">{calories} Cal</p> : <p>2:30pm</p>}
           </div>
         </AccordionTrigger>
