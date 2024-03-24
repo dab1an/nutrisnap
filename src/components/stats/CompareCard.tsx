@@ -6,20 +6,12 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Stats } from "@/types/queries";
+import { BarChart } from "@mui/x-charts/BarChart";
 import React, { use, useEffect, useState } from "react";
 
 const CompareCard = ({ stats }: { stats: Stats }) => {
-  const MACRO_COLOR_MAP: { [key: string]: number } = {
-    calorie: 1, //more calories is bad
-    protein: 0, //more protein is good
-    fat: 1, //more fat is bad
-    carbs: 1, //more carbs is bad
-    sugar: 1, //more sugar is bad
-  };
-
   //return a string that says how much higher or lower the percentage difference is
-  function percentageDifference(val1: number, val2: number, macro: string) {
-    const colors = ["text-primary", "text-destructive"];
+  function percentageDifference(val1: number, val2: number) {
     const difference = val2 - val1;
     const percentageDiff = Math.round((difference / val1) * 100);
     const str =
@@ -29,10 +21,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
           (percentageDiff > 0 ? "% higher " : "% lower ");
     return {
       str: str,
-      color:
-        percentageDiff > 0
-          ? colors[MACRO_COLOR_MAP[macro]]
-          : colors[Math.abs(1 - MACRO_COLOR_MAP[macro])],
+      color: percentageDiff > 0 ? "text-primary" : "text-destructive",
     };
   }
 
@@ -41,125 +30,198 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
       <Carousel className="drop-shadow-md">
         <CarouselContent>
           <CarouselItem>
-            <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
-              <div className="flex flex-col items-center justify-center">
-                <h1>Today's Calories Intake is </h1>
+            <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black p-12 pl-14">
+              <div className="text-[13px]">
+                <span>Today's Calories Intake is </span>
                 {(() => {
                   const percentage = percentageDifference(
                     stats.previous.total_calories,
-                    stats.current.total_calories,
-                    "calorie"
+                    stats.current.total_calories
                   );
 
-                  return <h1 className={percentage.color}>{percentage.str}</h1>;
+                  return (
+                    <span className={percentage.color}>{percentage.str}</span>
+                  );
                 })()}
-                <h1>than yesterday's</h1>
+                <span>than yesterday's</span>
               </div>
+
+              <BarChart
+                xAxis={[{ scaleType: "band", data: ["Yesterday", "Today"] }]}
+                series={[
+                  {
+                    data: [
+                      stats.previous.total_calories,
+                      stats.current.total_calories,
+                    ],
+                  },
+                ]}
+                colors={["black"]}
+                width={450}
+                height={450}
+              />
             </div>
           </CarouselItem>
           <CarouselItem>
-            <div className="flex justify-center items-center h-[250px] rounded-md bg-white">
-              <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
-                <div className="flex flex-col items-center justify-center">
-                  <h1>Today's Protein Intake is </h1>
-                  {(() => {
-                    const percentage = percentageDifference(
+            <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black p-12 pl-14">
+              <div className="text-[13px]">
+                <span>Today's Protein Intake is </span>
+                {(() => {
+                  const percentage = percentageDifference(
+                    stats.previous.total_protein,
+                    stats.current.total_protein
+                  );
+
+                  return (
+                    <span className={percentage.color}>{percentage.str}</span>
+                  );
+                })()}
+                <span>than yesterday's</span>
+              </div>
+
+              <BarChart
+                xAxis={[{ scaleType: "band", data: ["Yesterday", "Today"] }]}
+                series={[
+                  {
+                    data: [
                       stats.previous.total_protein,
                       stats.current.total_protein,
-                      "protein"
-                    );
-
-                    return (
-                      <h1 className={percentage.color}>{percentage.str}</h1>
-                    );
-                  })()}
-                  <h1>than yesterday's</h1>
-                </div>
-              </div>
+                    ],
+                  },
+                ]}
+                colors={["#FFC107"]}
+                width={450}
+                height={450}
+              />
             </div>
           </CarouselItem>
           <CarouselItem>
-            <div className="flex justify-center items-center h-[250px] rounded-md bg-white">
-              <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
-                <div className="flex flex-col items-center justify-center">
-                  <h1>Today's Fat Intake is </h1>
-                  {(() => {
-                    const percentage = percentageDifference(
-                      stats.previous.total_fat,
-                      stats.current.total_fat,
-                      "fat"
-                    );
+            <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black p-12 pl-14">
+              <div className="text-[13px]">
+                <span>Today's Fat Intake is </span>
+                {(() => {
+                  const percentage = percentageDifference(
+                    stats.previous.total_fat,
+                    stats.current.total_fat
+                  );
 
-                    return (
-                      <h1 className={percentage.color}>{percentage.str}</h1>
-                    );
-                  })()}
-                  <h1>than yesterday's</h1>
-                </div>
+                  return (
+                    <span className={percentage.color}>{percentage.str}</span>
+                  );
+                })()}
+                <span>than yesterday's</span>
               </div>
+
+              <BarChart
+                xAxis={[{ scaleType: "band", data: ["Yesterday", "Today"] }]}
+                series={[
+                  {
+                    data: [stats.previous.total_fat, stats.current.total_fat],
+                  },
+                ]}
+                colors={["#FA605F"]}
+                width={450}
+                height={450}
+              />
             </div>
           </CarouselItem>
           <CarouselItem>
-            <div className="flex justify-center items-center h-[250px] rounded-md bg-white">
-              <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
-                <div className="flex flex-col items-center justify-center">
-                  <h1>Today's Carbs Intake is </h1>
-                  {(() => {
-                    const percentage = percentageDifference(
+            <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black p-12 pl-14">
+              <div className="text-[13px]">
+                <span>Today's Carb Intake is </span>
+                {(() => {
+                  const percentage = percentageDifference(
+                    stats.previous.total_carbs,
+                    stats.current.total_carbs
+                  );
+
+                  return (
+                    <span className={percentage.color}>{percentage.str}</span>
+                  );
+                })()}
+                <span>than yesterday's</span>
+              </div>
+
+              <BarChart
+                xAxis={[{ scaleType: "band", data: ["Yesterday", "Today"] }]}
+                series={[
+                  {
+                    data: [
                       stats.previous.total_carbs,
                       stats.current.total_carbs,
-                      "carbs"
-                    );
-
-                    return (
-                      <h1 className={percentage.color}>{percentage.str}</h1>
-                    );
-                  })()}
-                  <h1>than yesterday's</h1>
-                </div>
-              </div>
+                    ],
+                  },
+                ]}
+                colors={["#539BF8"]}
+                width={450}
+                height={450}
+              />
             </div>
           </CarouselItem>
           <CarouselItem>
-            <div className="flex justify-center items-center h-[250px] rounded-md bg-white">
-              <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
-                <div className="flex flex-col items-center justify-center">
-                  <h1>Today's Sugar Intake is </h1>
-                  {(() => {
-                    const percentage = percentageDifference(
+            <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black p-12 pl-14">
+              <div className="text-[13px]">
+                <span>Today's Sugar Intake is </span>
+                {(() => {
+                  const percentage = percentageDifference(
+                    stats.previous.total_sugar,
+                    stats.current.total_sugar
+                  );
+
+                  return (
+                    <span className={percentage.color}>{percentage.str}</span>
+                  );
+                })()}
+                <span>than yesterday's</span>
+              </div>
+
+              <BarChart
+                xAxis={[{ scaleType: "band", data: ["Yesterday", "Today"] }]}
+                series={[
+                  {
+                    data: [
                       stats.previous.total_sugar,
                       stats.current.total_sugar,
-                      "sugar"
-                    );
-
-                    return (
-                      <h1 className={percentage.color}>{percentage.str}</h1>
-                    );
-                  })()}
-                  <h1>than yesterday's</h1>
-                </div>
-              </div>
+                    ],
+                  },
+                ]}
+                colors={["#AF66F7"]}
+                width={450}
+                height={450}
+              />
             </div>
           </CarouselItem>
           <CarouselItem>
-            <div className="flex justify-center items-center h-[250px] rounded-md bg-white">
-              <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black">
-                <div className="flex flex-col items-center justify-center">
-                  <h1>Today's Fiber Intake is </h1>
-                  {(() => {
-                    const percentage = percentageDifference(
+            <div className="flex justify-center items-center h-[250px] rounded-md bg-white text-black p-12 pl-14">
+              <div className="text-[13px]">
+                <span>Today's Fiber Intake is </span>
+                {(() => {
+                  const percentage = percentageDifference(
+                    stats.previous.total_fiber,
+                    stats.current.total_fiber
+                  );
+
+                  return (
+                    <span className={percentage.color}>{percentage.str}</span>
+                  );
+                })()}
+                <span>than yesterday's</span>
+              </div>
+
+              <BarChart
+                xAxis={[{ scaleType: "band", data: ["Yesterday", "Today"] }]}
+                series={[
+                  {
+                    data: [
                       stats.previous.total_fiber,
                       stats.current.total_fiber,
-                      "fiber"
-                    );
-
-                    return (
-                      <h1 className={percentage.color}>{percentage.str}</h1>
-                    );
-                  })()}
-                  <h1>than yesterday's</h1>
-                </div>
-              </div>
+                    ],
+                  },
+                ]}
+                colors={["#5DC95D"]}
+                width={450}
+                height={450}
+              />
             </div>
           </CarouselItem>
         </CarouselContent>
