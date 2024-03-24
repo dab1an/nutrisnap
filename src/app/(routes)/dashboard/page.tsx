@@ -109,7 +109,7 @@ const Page = () => {
             { x: "total", y: 2500 },
             {
               x: "blue",
-              y: stats?.current.total_calories ?? 0,
+              y: parseInt(stats?.current.total_calories) ?? 0,
             },
           ]}
           startAngle={90}
@@ -121,7 +121,7 @@ const Page = () => {
           <p className="font-bold text-3xl lg:text-5xl">
             {stats ? stats.current.total_calories : 0}
           </p>
-          <p className="font-bold lg:text-2xl">/ 10500 cal</p>
+          <p className="font-bold lg:text-2xl">/ 2500 cal</p>
         </div>
       </div>
       <div className="-mt-28 lg:-mt-52 w-full z-10">
