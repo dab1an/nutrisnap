@@ -1,6 +1,8 @@
 "use client";
+
 import React from "react";
 import Navbar from "@/components/Navbar";
+import { getStats } from "@/lib/data";
 import {
   CircularProgressbar,
   CircularProgressbarWithChildren,
@@ -23,12 +25,18 @@ interface IMacroSummaryProps {
   left: number;
 }
 
-import { getStats } from "@/lib/data";
-
 async function page() {
-  const stats = await getStats("day");
+  const stats_raw = await getStats("day");
+  const stats = stats_raw[0];
+
   console.log(stats);
-  return <p>{JSON.stringify(stats)}</p>;
+
+  const capCalories = 2500;
+  const capProtien = 500;
+  const capFat = 450;
+  const capCarbs = 500;
+  const capSugar = 300;
+  const capFiber = 200;
 
   return (
     <div className="container pt-12 flex flex-col  justify-center gap-6">
@@ -45,11 +53,31 @@ async function page() {
           <MacroWheel />
         </div>
         <div className="flex flex-wrap items-center justify-center gap-6">
-          <MacroSummary title="Protein" curr={200} left={400} />
-          <MacroSummary title="Fat" curr={200} left={400} />
-          <MacroSummary title="Carbs" curr={200} left={400} />
-          <MacroSummary title="Sugar" curr={200} left={400} />
-          <MacroSummary title="Fiber" curr={200} left={400} />
+          <MacroSummary
+            title="Protein"
+            curr={stats.total_calories}
+            left={capCalories - stats.total_calories}
+          />
+          <MacroSummary
+            title="Fat"
+            curr={stats.total_fat}
+            left={capCalories - stats.total_fat}
+          />
+          <MacroSummary
+            title="Carbs"
+            curr={stats.total_carbs}
+            left={capCarbs - stats.total_carbs}
+          />
+          <MacroSummary
+            title="Sugar"
+            curr={stats.total_sugar}
+            left={capSugar - stats.total_sugar}
+          />
+          <MacroSummary
+            title="Fiber"
+            curr={stats.total_fiber}
+            left={capFiber - stats.total_fiber}
+          />
         </div>
       </div>
       <TopFoodCard />
@@ -64,10 +92,11 @@ async function page() {
 
 export const MacroWheel = () => {
   return (
+
     <div className="relative flex items-center h-44 w-44 justify-center">
       <CircularProgressbar
         className="h-[30px] absolute"
-        value={40}
+        value={Stats.}
         text={""}
         strokeWidth={14}
         styles={buildStyles({
@@ -177,9 +206,9 @@ export const TopFoodCard = () => {
             <SelectValue placeholder="Protein" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="light">Protein</SelectItem>
+            <SelectItem value="dark">Protein</SelectItem>
             <SelectItem value="dark">Fat</SelectItem>
-            <SelectItem value="system">Carbs</SelectItem>
+            <SelectItem value="dark">Carbs</SelectItem>
             <SelectItem value="dark">Sugar</SelectItem>
             <SelectItem value="dark">Fiber</SelectItem>
           </SelectContent>
