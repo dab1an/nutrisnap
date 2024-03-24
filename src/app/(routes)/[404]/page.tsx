@@ -1,12 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+export default function Error() {
   return (
     <div className="container flex gap-3 flex-col h-[500px] items-center justify-center  ">
       <h2 className="text-6xl font-bold text-primary">404</h2>
