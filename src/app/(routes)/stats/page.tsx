@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/select";
 
 import { FoodCard } from "../dashboard/page";
+import { Stats } from "@/types/queries";
 
 interface IMacroSummaryProps {
   title: string;
@@ -26,8 +27,8 @@ interface IMacroSummaryProps {
 }
 
 async function page() {
-  const stats_raw = await getStats("day");
-  const stats = stats_raw[0];
+  const stats = await getStats("day");
+  // return <p>{JSON.stringify(stats_raw)}</p>;
 
   console.log(stats);
 
@@ -47,21 +48,23 @@ async function page() {
         <div className="flex items-center w-full gap-6 pt-2 ">
           <div className="flex flex-col">
             <h1 className="text-lg font-extrabold">Daily Cals.</h1>
-            <h1 className="font-bold">1043 cal</h1>
-            <h1 className="text-[#C3BEBE] font-bold ">703 cal left</h1>
+            <h1 className="font-bold">{stats.total_calories + " cals."}</h1>
+            <h1 className="text-[#C3BEBE] font-bold ">
+              {Math.max(capCalories - stats.total_calories, 0) + " cals. left"}
+            </h1>
           </div>
-          <MacroWheel />
+          <MacroWheel stats={stats} />
         </div>
         <div className="flex flex-wrap items-center justify-center gap-6">
           <MacroSummary
             title="Protein"
-            curr={stats.total_calories}
-            left={capCalories - stats.total_calories}
+            curr={stats.total_protein}
+            left={capProtien - stats.total_protein}
           />
           <MacroSummary
             title="Fat"
             curr={stats.total_fat}
-            left={capCalories - stats.total_fat}
+            left={capFat - stats.total_fat}
           />
           <MacroSummary
             title="Carbs"
@@ -90,13 +93,12 @@ async function page() {
   );
 }
 
-export const MacroWheel = () => {
+export const MacroWheel = ({ stats }: { stats: Stats }) => {
   return (
-
     <div className="relative flex items-center h-44 w-44 justify-center">
       <CircularProgressbar
         className="h-[30px] absolute"
-        value={Stats.}
+        value={Math.floor((stats.total_fiber / 200) * 100)}
         text={""}
         strokeWidth={14}
         styles={buildStyles({
@@ -106,7 +108,7 @@ export const MacroWheel = () => {
       />
       <CircularProgressbar
         className="h-[60px] absolute"
-        value={66}
+        value={Math.floor((stats.total_sugar / 300) * 100)}
         text={""}
         strokeWidth={10}
         styles={buildStyles({
@@ -116,7 +118,7 @@ export const MacroWheel = () => {
       />
       <CircularProgressbar
         className="h-[90px] absolute"
-        value={66}
+        value={Math.floor((stats.total_carbs / 500) * 100)}
         text={""}
         strokeWidth={8}
         styles={buildStyles({
@@ -126,7 +128,7 @@ export const MacroWheel = () => {
       />
       <CircularProgressbar
         className="h-[120px] absolute"
-        value={66}
+        value={Math.floor((stats.total_fat / 450) * 100)}
         text={""}
         strokeWidth={6}
         styles={buildStyles({
@@ -136,7 +138,7 @@ export const MacroWheel = () => {
       />
       <CircularProgressbar
         className="h-[150px] absolute"
-        value={66}
+        value={Math.floor((stats.total_protein / 500) * 100)}
         text={""}
         strokeWidth={5}
         styles={buildStyles({
@@ -175,11 +177,12 @@ export const MacroSummary = ({ title, curr, left }: IMacroSummaryProps) => {
       <div className="text-[#C3BEBE]">
         <span className="text-[9.5px]">{curr + "g"}</span>
         <span className="text-sm"> • </span>
-        <span className="text-[9.5px]">{curr + "g left"}</span>
+        <span className="text-[9.5px]">{Math.max(left, 0) + "g left"}</span>
       </div>
     </div>
   );
 };
+
 export const ProfilePhoto = (img: string) => {
   return (
     <div className=" flex items-center justify-between gap-3">
