@@ -19,7 +19,7 @@ NutriSnap is 3-man team, innovative nutritional tracking application developed d
 - And much much more!
 
 **Getting Started:**
-1. Check out the deployed website! [NutriSnap](https://nutri-snap-jww3izjdx-jacob8765.vercel.app/)
+1. Check out the deployed website! [NutriSnap](https://nutri-snap.vercel.app/)
 
 **Usage:**
 1. Register for an account or log in to an existing account.
