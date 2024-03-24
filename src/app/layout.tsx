@@ -2,9 +2,9 @@ import BottomNav from "@/components/BottomNav";
 import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import * as React from "react";
 import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
-
 const APP_NAME = "PWA App";
 const APP_DEFAULT_TITLE = "My Awesome PWA App";
 const APP_TITLE_TEMPLATE = "%s - PWA App";
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FFFFFF",
+  themeColor: "#fff",
 };
 
 export default function RootLayout({

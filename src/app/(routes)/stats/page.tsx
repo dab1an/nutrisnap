@@ -59,7 +59,7 @@ export default function Page() {
     if (loading) return <LoadingPage />;
     return (
       <div className=" flex items-center justify-between gap-3">
-        <Avatar email="alexvera@gmail.com" />
+        <Avatar />
         <div className="flex flex-col font-bold text-sm">
           <p>Hey {email},</p>
           <p>Today is {new Date().toLocaleDateString()}</p>
