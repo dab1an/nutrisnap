@@ -16,7 +16,8 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
     const str =
       percentageDiff === 0
         ? "the same"
-        : percentageDiff + (percentageDiff > 0 ? "% higher " : "% lower ");
+        : Math.abs(percentageDiff) +
+          (percentageDiff > 0 ? "% higher " : "% lower ");
     return {
       str: str,
       color: percentageDiff > 0 ? "text-primary" : "text-destructive",
