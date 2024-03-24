@@ -567,7 +567,7 @@ const Page = () => {
   const groupedMeals = groupMealsByDay(meals);
   console.log(stats);
   return (
-    <div className="container pt-5">
+    <div className="container">
       <Navbar special={NavSpecial} />
       <div className="relative w-full -z-10">
         <VictoryPie
