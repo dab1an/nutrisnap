@@ -1,8 +1,8 @@
 import { getStats } from "@/lib/data";
+import { Stats } from "@/types/queries";
 import React, { useEffect, useState } from "react";
 import MacroSummary from "./MacroSummary";
 import MacroWheel from "./MacroWheel";
-import { Stats } from "@/types/queries";
 const capCalories = 2500;
 const capProtien = 500;
 const capFat = 450;
@@ -12,7 +12,7 @@ const capFiber = 200;
 
 export default function StatsCard({ stats }: { stats: Stats }) {
   return (
-    <div className="w-full bg-foreground/5 h-[325px] flex flex-col rounded-md px-4  gap-2">
+    <div className="w-full bg-foreground/5 flex flex-col rounded-md px-4 pb-[5px] gap-2">
       <div className="flex items-center w-full gap-6 pt-2 ">
         <div className="flex flex-col">
           <h1 className="text-lg font-extrabold">Daily cals.</h1>

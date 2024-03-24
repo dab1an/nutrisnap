@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useUserAuth } from "@/utils/hooks/useUserAuth";
 import React from "react";
-const Avatar = ({ email }: { email: string }) => {
+const Avatar = ({ email }: { email?: string }) => {
   const { userData, loading } = useUserAuth();
   return (
     <img
