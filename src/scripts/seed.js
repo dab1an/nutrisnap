@@ -85,7 +85,10 @@ async function createTables(client) {
       ('Sushi Rolls', 500, 25, 60, 10, 3, 5, E'\\\\xFFD8FFE000104A46494600010101006000', 'Restaurant', '${email}', '2024-03-22 12:00:00'),
       ('Chicken Fajitas', 550, 35, 45, 20, 8, 5, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-23 12:00:00'),
       ('Spinach Salad with Grilled Shrimp', 400, 30, 20, 15, 6, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Restaurant', '${email}', '2024-03-24 12:00:00'),
-      ('Beef and Broccoli', 500, 35, 40, 20, 6, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-24 12:00:00')
+      ('Beef and Broccoli', 500, 35, 40, 20, 6, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-24 12:00:00'),
+      ('Chicken Fajitas', 550, 35, 45, 20, 8, 5, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-23 02:00:00'),
+      ('Spinach Salad with Grilled Shrimp', 400, 30, 20, 15, 6, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Restaurant', '${email}', '2024-03-23 00:00:00'),
+      ('Beef and Broccoli', 500, 35, 40, 20, 6, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-23 12:00:00')
     `);
   }
 

@@ -64,10 +64,8 @@ const Page = () => {
         }
       );
       if (response.ok) {
-        const data = await response.json();
-        const newRes = data;
-        setStats(newRes.meals.rows[0]);
-        return newRes.meals.rows;
+        const res = await response.json();
+        setStats(res.data as Stats);
       } else {
         const error = await response.json();
         console.log(error);
@@ -108,8 +106,11 @@ const Page = () => {
         <VictoryPie
           colorScale={["gray", "#539BF8"]}
           data={[
-            { x: "total", y: 10500 },
-            { x: "blue", y: stats ? stats.total_calories : 0 },
+            { x: "total", y: 2500 },
+            {
+              x: "blue",
+              y: stats ? parseInt(stats.current.total_calories) : 0,
+            },
           ]}
           startAngle={90}
           endAngle={-90}
@@ -118,7 +119,7 @@ const Page = () => {
         />
         <div className="absolute font-bold  inset-0 w-fit h-5 mx-auto my-auto -top-32 flex flex-col items-center">
           <p className="font-bold text-3xl lg:text-5xl">
-            {stats ? stats.total_calories : 0}
+            {stats ? stats.current.total_calories : 0}
           </p>
           <p className="font-bold lg:text-2xl">/ 10500 cal</p>
         </div>
