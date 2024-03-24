@@ -70,22 +70,22 @@ async function createTables(client) {
     await client.query(`
       INSERT INTO "meals" ("name", "calories", "protein", "carbs", "fat", "fiber", "sugar", "img", "location", "user_email", "created_at")
       VALUES
-      ('Oatmeal with Blueberries', 300, 10, 50, 5, 8, 15, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2023-03-10 12:00:00'),
-      ('Grilled Chicken Salad', 450, 35, 20, 18, 5, 10, E'\\\\xFFD8FFE000104A46494600010101006000', 'Restaurant', '${email}', '2023-03-11 12:00:00'),
-      ('Beef Stir-fry with Rice', 550, 30, 60, 20, 5, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2023-03-12 12:00:00'),
-      ('Veggie Omelet', 280, 18, 12, 16, 3, 6, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2023-03-13 12:00:00'),
-      ('Grilled Salmon with Asparagus', 400, 35, 15, 18, 6, 3, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2023-03-14 12:00:00'),
-      ('Chicken Caesar Wrap', 520, 30, 40, 25, 4, 5, E'\\\\xFFD8FFE000104A46494600010101006000', 'Work', '${email}', '2023-03-14 12:00:00'),
-      ('Pasta Primavera', 600, 20, 90, 18, 8, 12, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2023-03-14 12:00:00'),
-      ('Greek Salad with Feta', 350, 15, 18, 25, 6, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Restaurant', '${email}', '2023-03-17 12:00:00'),
-      ('Beef Tacos', 550, 30, 45, 25, 8, 5, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2023-03-18 12:00:00'),
-      ('Grilled Chicken Sandwich', 480, 35, 40, 18, 4, 6, E'\\\\xFFD8FFE000104A46494600010101006000', 'Restaurant', '${email}', '2023-03-19 12:00:00'),
-      ('Vegetable Stir-fry with Tofu', 400, 18, 50, 15, 10, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2023-03-19 12:00:00'),
-      ('Turkey Burger with Sweet Potato Fries', 550, 30, 45, 25, 8, 10, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2023-03-21 12:00:00'),
-      ('Sushi Rolls', 500, 25, 60, 10, 3, 5, E'\\\\xFFD8FFE000104A46494600010101006000', 'Restaurant', '${email}', '2023-03-22 12:00:00'),
-      ('Chicken Fajitas', 550, 35, 45, 20, 8, 5, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2023-03-23 12:00:00'),
-      ('Spinach Salad with Grilled Shrimp', 400, 30, 20, 15, 6, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Restaurant', '${email}', '2023-03-24 12:00:00'),
-      ('Beef and Broccoli', 500, 35, 40, 20, 6, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2023-03-25 12:00:00')
+      ('Oatmeal with Blueberries', 300, 10, 50, 5, 8, 15, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-10 12:00:00'),
+      ('Grilled Chicken Salad', 450, 35, 20, 18, 5, 10, E'\\\\xFFD8FFE000104A46494600010101006000', 'Restaurant', '${email}', '2024-03-11 12:00:00'),
+      ('Beef Stir-fry with Rice', 550, 30, 60, 20, 5, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-12 12:00:00'),
+      ('Veggie Omelet', 280, 18, 12, 16, 3, 6, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-13 12:00:00'),
+      ('Grilled Salmon with Asparagus', 400, 35, 15, 18, 6, 3, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-14 12:00:00'),
+      ('Chicken Caesar Wrap', 520, 30, 40, 25, 4, 5, E'\\\\xFFD8FFE000104A46494600010101006000', 'Work', '${email}', '2024-03-14 12:00:00'),
+      ('Pasta Primavera', 600, 20, 90, 18, 8, 12, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-14 12:00:00'),
+      ('Greek Salad with Feta', 350, 15, 18, 25, 6, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Restaurant', '${email}', '2024-03-17 12:00:00'),
+      ('Beef Tacos', 550, 30, 45, 25, 8, 5, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-18 12:00:00'),
+      ('Grilled Chicken Sandwich', 480, 35, 40, 18, 4, 6, E'\\\\xFFD8FFE000104A46494600010101006000', 'Restaurant', '${email}', '2024-03-19 12:00:00'),
+      ('Vegetable Stir-fry with Tofu', 400, 18, 50, 15, 10, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-19 12:00:00'),
+      ('Turkey Burger with Sweet Potato Fries', 550, 30, 45, 25, 8, 10, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-21 12:00:00'),
+      ('Sushi Rolls', 500, 25, 60, 10, 3, 5, E'\\\\xFFD8FFE000104A46494600010101006000', 'Restaurant', '${email}', '2024-03-22 12:00:00'),
+      ('Chicken Fajitas', 550, 35, 45, 20, 8, 5, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-23 12:00:00'),
+      ('Spinach Salad with Grilled Shrimp', 400, 30, 20, 15, 6, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Restaurant', '${email}', '2024-03-24 12:00:00'),
+      ('Beef and Broccoli', 500, 35, 40, 20, 6, 8, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${email}', '2024-03-24 12:00:00')
     `);
   }
 

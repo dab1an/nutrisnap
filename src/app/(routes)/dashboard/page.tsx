@@ -59,7 +59,7 @@ const Page = () => {
       const response = await fetch(
         `/auth/get-stats?email=${"jschuster8765@gmail.com"}&period=${period}`,
         {
-          method: "GET",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
         }
       );
