@@ -5,10 +5,10 @@ import { Inter } from "next/font/google";
 import * as React from "react";
 import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
-const APP_NAME = "PWA App";
-const APP_DEFAULT_TITLE = "My Awesome PWA App";
+const APP_NAME = "NutriSnap";
+const APP_DEFAULT_TITLE = "NutriSnap App";
 const APP_TITLE_TEMPLATE = "%s - PWA App";
-const APP_DESCRIPTION = "Best PWA app in the world!";
+const APP_DESCRIPTION = "From snap to nutrition!";
 
 export const metadata: Metadata = {
   applicationName: APP_NAME,
