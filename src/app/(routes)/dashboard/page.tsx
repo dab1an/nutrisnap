@@ -88,9 +88,9 @@ const Page = () => {
   const { loading, userData } = useUserAuth();
   console.log(loading, userData);
   return (
-    <div className="container">
-      <h1>Welcome back,</h1>
-      <h1>Jacob</h1>
+    <div className="container pt-16">
+      <h1 className="font-extrabold text-[26px]">Welcome back,</h1>
+      <h1 className="font-extrabold text-[26px] text-[#539BF8]">Jacob</h1>
       <div className="relative w-full -z-10">
         <VictoryPie
           colorScale={["gray", "#539BF8"]}
@@ -169,8 +169,14 @@ export const FoodCard = ({
   const handleShowCalories = () => {
     setShowCalories(!showCalories);
   };
+
   return (
-    <Accordion type="single" collapsible onClick={handleShowCalories}>
+    <Accordion
+      type="single"
+      collapsible
+      onClick={handleShowCalories}
+      className="drop-shadow-xl"
+    >
       <AccordionItem value="item-1" className="w-full">
         <AccordionTrigger className="flex justify-between items-center w-full gap-2">
           <div className="flex w-full justify-between">
