@@ -9,21 +9,19 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import StatsCard from "@/components/stats/StatsCard";
+import CompareCard from "@/components/stats/CompareCard";
+import TopFoodCards from "@/components/stats/TopFoodCards";
 
 export default function page() {
   return (
-    <div className="container pt-12 flex flex-col  justify-center gap-6">
+    <div className="container pt-12 flex flex-col  justify-center items-center gap-6">
       <div className="w-full mb-2">
         <Navbar special={ProfilePhoto} />
       </div>
-
-      <TopFoodCard />
       <StatsCard />
-      {/* <div className="overflow-y-scroll">
-        <FoodCard calories={200} carbs={200} />
-        <FoodCard calories={200} carbs={200} />
-        <FoodCard calories={200} carbs={200} />
-      </div> */}
+      <TopFoodCard />
+      <TopFoodCards />
+      <CompareCard />
     </div>
   );
 }
@@ -54,11 +52,11 @@ export const TopFoodCard = () => {
             <SelectValue placeholder="Protein" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="dark">Protein</SelectItem>
-            <SelectItem value="dark">Fat</SelectItem>
-            <SelectItem value="dark">Carbs</SelectItem>
-            <SelectItem value="dark">Sugar</SelectItem>
-            <SelectItem value="dark">Fiber</SelectItem>
+            <SelectItem value="Protein">Protein</SelectItem>
+            <SelectItem value="Fat">Fat</SelectItem>
+            <SelectItem value="Carbs">Carbs</SelectItem>
+            <SelectItem value="Sugar">Sugar</SelectItem>
+            <SelectItem value="Fiber">Fiber</SelectItem>
           </SelectContent>
         </Select>
       </div>
