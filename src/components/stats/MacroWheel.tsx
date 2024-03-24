@@ -9,7 +9,7 @@ export default function MacroWheel({ stats }: { stats: object }) {
     <div className="relative flex items-center h-44 w-44 justify-center">
       <CircularProgressbar
         className="h-[30px] absolute"
-        value={Math.floor((stats.total_fiber / 200) * 100)}
+        value={Math.floor((stats.total_fiber / 38) * 100)}
         text={""}
         strokeWidth={14}
         styles={buildStyles({
@@ -19,7 +19,7 @@ export default function MacroWheel({ stats }: { stats: object }) {
       />
       <CircularProgressbar
         className="h-[60px] absolute"
-        value={Math.floor((stats.total_sugar / 300) * 100)}
+        value={Math.floor((stats.total_sugar / 56) * 100)}
         text={""}
         strokeWidth={10}
         styles={buildStyles({
@@ -29,7 +29,7 @@ export default function MacroWheel({ stats }: { stats: object }) {
       />
       <CircularProgressbar
         className="h-[90px] absolute"
-        value={Math.floor((stats.total_carbs / 500) * 100)}
+        value={Math.floor((stats.total_carbs / 280) * 100)}
         text={""}
         strokeWidth={8}
         styles={buildStyles({
@@ -39,7 +39,7 @@ export default function MacroWheel({ stats }: { stats: object }) {
       />
       <CircularProgressbar
         className="h-[120px] absolute"
-        value={Math.floor((stats.total_fat / 450) * 100)}
+        value={Math.floor((stats.total_fat / 60) * 100)}
         text={""}
         strokeWidth={6}
         styles={buildStyles({
@@ -49,7 +49,7 @@ export default function MacroWheel({ stats }: { stats: object }) {
       />
       <CircularProgressbar
         className="h-[150px] absolute"
-        value={Math.floor((stats.total_protein / 600) * 100)}
+        value={Math.floor((stats.total_protein / 130) * 100)}
         text={""}
         strokeWidth={5}
         styles={buildStyles({

@@ -1,6 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import Avatar from "@/components/Avatar";
 import Navbar from "@/components/Navbar";
+import CompareCard from "@/components/stats/CompareCard";
+import StatsCard from "@/components/stats/StatsCard";
+import TopFoodCards from "@/components/stats/TopFoodCards";
 import {
   Select,
   SelectContent,
@@ -8,10 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import StatsCard from "@/components/stats/StatsCard";
-import CompareCard from "@/components/stats/CompareCard";
-import TopFoodCards from "@/components/stats/TopFoodCards";
-
+import React, { useState } from "react";
 export default function Page() {
   const [macroType, setMacroType] = useState<string>("protein");
   const handleChangeMacroType = (type: string) => {
@@ -34,11 +34,7 @@ export default function Page() {
 export const ProfilePhoto = (img: string) => {
   return (
     <div className=" flex items-center justify-between gap-3">
-      <img
-        className="h-[60px] rounded-full"
-        src="https://media.licdn.com/dms/image/D4E35AQHGlbhv55wH9A/profile-framedphoto-shrink_800_800/0/1686157578276?e=1711839600&v=beta&t=hZr-se8W3rP2Kvdv12ZOrr42uhppsRq21aaEIeOeU9I"
-        alt=""
-      />
+      <Avatar email="alexvera@gmail.com" />
       <div className="flex flex-col font-bold text-sm">
         <p>Hey Jacob,</p>
         <p>Today is October 16</p>
