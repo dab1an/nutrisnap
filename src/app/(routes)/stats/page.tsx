@@ -68,7 +68,7 @@ export default function Page() {
     );
   };
   return (
-    <div className="container flex flex-col  justify-center items-center gap-6">
+    <div className="container flex flex-col justify-center items-center gap-6 pb-20">
       <div className="w-full mb-2">
         <Navbar special={ProfilePhoto} />
       </div>

@@ -121,7 +121,9 @@ const NavbarRouteButton = ({
       href={route}
       className={`flex p-3 w-full gap-3 
        ${
-         pathname && pathname === route ? "bg-primary/50" : "bg-transparent"
+         pathname && pathname === route
+           ? "bg-primary text-white"
+           : "bg-transparent"
        } rounded-lg cursor-pointer`}
     >
       <Icon />

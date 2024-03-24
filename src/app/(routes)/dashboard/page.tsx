@@ -104,7 +104,7 @@ const Page = () => {
       <Navbar special={NavSpecial} />
       <div className="relative w-full -z-10 lg:w-[500px]">
         <VictoryPie
-          colorScale={["gray", "#539BF8"]}
+          colorScale={["gray", "#2463EB"]}
           data={[
             { x: "total", y: 2500 },
             {

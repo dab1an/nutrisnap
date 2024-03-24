@@ -1,5 +1,3 @@
-import React, { use } from "react";
-import { useState, useEffect } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -8,6 +6,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Stats } from "@/types/queries";
+import React, { use, useEffect, useState } from "react";
 
 const CompareCard = ({ stats }: { stats: Stats }) => {
   function percentageDifference(val1: number, val2: number) {
@@ -16,7 +15,7 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
     return percentageDiff;
   }
   return (
-    <div className="w-[90%] h-[200px]">
+    <div className="w-[90%] h-[200px] ">
       <Carousel className="drop-shadow-md">
         <CarouselContent>
           <CarouselItem>
@@ -210,8 +209,8 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
             </div>
           </CarouselItem>
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className="ml-[50px]" />
+        <CarouselNext className="mr-[50px]" />
       </Carousel>
     </div>
   );
