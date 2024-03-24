@@ -2,7 +2,6 @@
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -19,10 +18,10 @@ import {
   Menu,
 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React from "react";
 import { ModeToggle } from "./dark-mode";
+import Link from "next/link";
 const Navbar = ({ special: Special }: { special: any }) => {
-  const [selected, setSelected] = useState<string>("Home");
   const items = [
     {
       icon: Home,
@@ -114,11 +113,11 @@ const NavbarRouteButton = ({
   icon: LucideIcon;
   name: string;
   selected?: string;
-  route?: string;
+  route: string;
 }) => {
   const pathname = usePathname();
   return (
-    <a
+    <Link
       href={route}
       className={`flex p-3 w-full gap-3 
        ${
@@ -127,6 +126,6 @@ const NavbarRouteButton = ({
     >
       <Icon />
       <p className="font-medium">{name}</p>
-    </a>
+    </Link>
   );
 };
