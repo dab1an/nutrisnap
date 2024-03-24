@@ -54,7 +54,7 @@ async function createTables(client) {
   async function insertMockData(client) {
     await client.query(`
       INSERT INTO "users" ("username", "name", "password", "email")
-      VALUES ('john_doe', 'John Doe', 'password123', 'john.doe@example.com');
+      VALUES ('john_doe', 'John Doe', 'password123', 'jschuster8765@gmail.com');
     `);
   
     // Get user ID
