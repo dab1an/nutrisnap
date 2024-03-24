@@ -5,43 +5,45 @@ async function createTables(client) {
       await client.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
       //drop tables
         await client.query(`
-            DROP TABLE IF EXISTS "meals";
+            DROP TABLE "meals";
         `);
         console.log(`Dropped "meals" table`);
         await client.query(`
-            DROP TABLE IF EXISTS "user";
+            DROP TABLE "users";
         `);
         console.log(`Dropped "users" table`);
       
       await client.query(`
-        CREATE TABLE IF NOT EXISTS "users" (
-            "email" VARCHAR(255) NOT NULL UNIQUE PRIMARY KEY,
-            "id" UUID DEFAULT uuid_generate_v4(),
-            "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-            "username" VARCHAR(255) NOT NULL,
-            "name" VARCHAR(255) NOT NULL,
-            "password" VARCHAR(255) NOT NULL
-        );
+      CREATE TABLE IF NOT EXISTS "users" (
+        "email" VARCHAR(255) PRIMARY KEY,
+        "id" UUID DEFAULT uuid_generate_v4(),
+        "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+        "username" VARCHAR(255) NOT NULL,
+        "name" VARCHAR(255) NOT NULL,
+        "password" VARCHAR(255) NOT NULL
+      );
       `);
       
       console.log(`Created "users" table`);
       
       await client.query(`
-      CREATE TABLE IF NOT EXISTS "meals" (
-          "id" UUID DEFAULT uuid_generate_v4(),
-          "name" VARCHAR(255) NOT NULL,
-          "calories" INTEGER NOT NULL,
-          "protein" BIGINT NOT NULL,
-          "carbs" BIGINT NOT NULL,
-          "fat" BIGINT NOT NULL,
-          "fiber" BIGINT NOT NULL,
-          "sugar" BIGINT NOT NULL,
-          "img" bytea NOT NULL,
-          "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-          "location" VARCHAR(255),
-          "user_email" VARCHAR(255) REFERENCES "users"("email")
+    CREATE TABLE IF NOT EXISTS "meals" (
+        "id" UUID DEFAULT uuid_generate_v4(),
+        "name" VARCHAR(255) NOT NULL,
+        "calories" INTEGER NOT NULL,
+        "protein" BIGINT NOT NULL,
+        "carbs" BIGINT NOT NULL,
+        "fat" BIGINT NOT NULL,
+        "fiber" BIGINT NOT NULL,
+        "sugar" BIGINT NOT NULL,
+        "img" bytea NOT NULL,
+        "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+        "location" VARCHAR(255),
+        "user_email" VARCHAR(255) REFERENCES "users"("email"),
+        PRIMARY KEY ("id")
       );
-  `);
+`);
+
   
       console.log(`Created "meals" table`);
     } catch (err) {
