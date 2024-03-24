@@ -23,7 +23,13 @@ interface IMacroSummaryProps {
   left: number;
 }
 
-const page = () => {
+import { getStats } from "@/lib/data";
+
+async function page() {
+  const stats = await getStats("day");
+  console.log(stats);
+  return <p>{JSON.stringify(stats)}</p>;
+
   return (
     <div className="container pt-12 flex flex-col  justify-center gap-6">
       <div className="w-full mb-2">
@@ -54,7 +60,7 @@ const page = () => {
       </div>
     </div>
   );
-};
+}
 
 export const MacroWheel = () => {
   return (
