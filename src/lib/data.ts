@@ -52,7 +52,7 @@ ORDER BY
       [email, interval]
     );
 
-    return rows;
+    return rows[0];
   } finally {
     // await client.end();
   }
