@@ -1,12 +1,15 @@
 import { sql } from "@vercel/postgres";
 import type { Meal } from "@/types/meal";
 import { createClient } from "@vercel/postgres";
+import { unstable_noStore as noStore } from "next/cache";
 
-const userId = "dc21b61b-4d40-41ee-bb29-924f73b6cc00"; //todo haha
+const userId = "a5b71dbc-4c6e-48cc-8bcf-5c955ee5cc97"; //todo haha
 
 export async function getMeals() {
+  noStore();
+
   const { rows } =
-    await sql<Meal>`SELECT * FROM meal where user_id = ${userId} ORDER BY created_at DESC;`;
+    await sql<Meal>`SELECT * FROM meals where user_id = ${userId} ORDER BY created_at DESC;`;
   return rows;
 }
 
@@ -38,7 +41,7 @@ export async function getStats(interval: "day" | "week" | "month" = "day") {
     LEAD(SUM(fat), 1) OVER (ORDER BY date_trunc($2::text, created_at)) AS prev_period_fat,
     LEAD(SUM(fiber), 1) OVER (ORDER BY date_trunc($2::text, created_at)) AS prev_period_fiber
 FROM
-    meal
+    meals
 WHERE
     user_id = $1
 GROUP BY

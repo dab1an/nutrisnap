@@ -5,7 +5,7 @@ async function createTables(client) {
       await client.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
       //drop tables
         await client.query(`
-            DROP TABLE IF EXISTS "meal";
+            DROP TABLE IF EXISTS "meals";
         `);
         console.log(`Dropped "meals" table`);
         await client.query(`
@@ -14,7 +14,7 @@ async function createTables(client) {
         console.log(`Dropped "users" table`);
       
       await client.query(`
-        CREATE TABLE IF NOT EXISTS "user" (
+        CREATE TABLE IF NOT EXISTS "users" (
             "id" UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
             "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
             "username" VARCHAR(255) NOT NULL,
@@ -27,7 +27,7 @@ async function createTables(client) {
       console.log(`Created "users" table`);
       
       await client.query(`
-        CREATE TABLE IF NOT EXISTS "meal" (
+        CREATE TABLE IF NOT EXISTS "meals" (
             "id" UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
             "name" VARCHAR(255) NOT NULL,
             "calories" INTEGER NOT NULL,
@@ -39,7 +39,7 @@ async function createTables(client) {
             "img" bytea NOT NULL,
             "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
             "location" VARCHAR(255),
-            "user_id" UUID REFERENCES "user"("id")
+            "user_id" UUID REFERENCES "users"("id")
         );
       `);
   
@@ -51,13 +51,13 @@ async function createTables(client) {
 
   async function insertMockData(client) {
     await client.query(`
-      INSERT INTO "user" ("username", "name", "password", "email")
+      INSERT INTO "users" ("username", "name", "password", "email")
       VALUES ('john_doe', 'John Doe', 'password123', 'john.doe@example.com');
     `);
   
     // Get user ID
     const { rows: [user] } = await client.query(`
-      SELECT id FROM "user" WHERE username = 'john_doe';
+      SELECT id FROM "users" WHERE username = 'john_doe';
     `);
   
     // Get the user ID
@@ -66,7 +66,7 @@ async function createTables(client) {
   
     // Insert meal data
     await client.query(`
-      INSERT INTO "meal" ("name", "calories", "protein", "carbs", "fat", "fiber", "sugar", "img", "location", "user_id")
+      INSERT INTO "meals" ("name", "calories", "protein", "carbs", "fat", "fiber", "sugar", "img", "location", "user_id")
       VALUES
         ('Oatmeal with Blueberries', 300, 10, 50, 5, 8, 15, E'\\\\xFFD8FFE000104A46494600010101006000', 'Home', '${userId}'),
         ('Grilled Chicken Salad', 450, 35, 20, 18, 5, 10, E'\\\\xFFD8FFE000104A46494600010101006000', 'Restaurant', '${userId}'),
