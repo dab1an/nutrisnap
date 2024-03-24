@@ -84,8 +84,7 @@ const TheTeam = () => {
     {
       name: "Alejandro Vera",
       role: "Software Engineer",
-      image:
-        "https://media.licdn.com/dms/image/D4E35AQHGlbhv55wH9A/profile-framedphoto-shrink_400_400/0/1686157578275?e=1711846800&v=beta&t=tt1gXZpla3cy3JuOv422t4Q9_oTW9RtVXSeNxOG9f9I",
+      image: "https://avatars.githubusercontent.com/u/91917536?v=4",
       linkedin: "https://www.linkedin.com/in/alejandrovera09/",
       github: "https://github.com/AlejandroV01",
     },
