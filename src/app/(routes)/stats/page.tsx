@@ -5,7 +5,6 @@ import { getMeals, getStats } from "@/lib/data";
 
 async function page() {
   const stats = await getStats("day");
-  //   const stats = await getMeals();
 
   return (
     <div>
