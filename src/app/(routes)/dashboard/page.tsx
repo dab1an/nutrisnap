@@ -1,4 +1,5 @@
 "use client";
+import Navbar from "@/components/Navbar";
 import {
   Accordion,
   AccordionContent,
@@ -7,6 +8,7 @@ import {
 } from "@/components/ui/accordion";
 import { Progress } from "@/components/ui/progress";
 import { useUserAuth } from "@/utils/hooks/useUserAuth";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { VictoryPie } from "victory";
 interface IProgressItemProps {
@@ -85,12 +87,24 @@ function extractDateInfo(dateString: string) {
   return { year, month, day };
 }
 const Page = () => {
+  const NavSpecial = () => {
+    return (
+      <div className="flex flex-col">
+        <h1 className="font-extrabold text-[26px]">Welcome back,</h1>
+        <h1 className="font-extrabold text-[26px] text-primary">Jacob</h1>
+      </div>
+    );
+  };
+  const router = useRouter();
   const { loading, userData } = useUserAuth();
-  console.log(loading, userData);
+  if (loading) return <div>Loading...</div>;
+  if (!userData) {
+    alert("Please login to view this page. Redirecting to login page...");
+    router.push("/login");
+  }
   return (
-    <div className="container pt-16">
-      <h1 className="font-extrabold text-[26px]">Welcome back,</h1>
-      <h1 className="font-extrabold text-[26px] text-[#539BF8]">Jacob</h1>
+    <div className="container pt-5">
+      <Navbar special={NavSpecial} />
       <div className="relative w-full -z-10">
         <VictoryPie
           colorScale={["gray", "#539BF8"]}

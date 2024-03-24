@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
 import Navbar from "@/components/Navbar";
+import React from "react";
 import {
   CircularProgressbar,
   CircularProgressbarWithChildren,
@@ -15,15 +15,23 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+import { useUserAuth } from "@/utils/hooks/useUserAuth";
+import { useRouter } from "next/navigation";
 import { FoodCard } from "../dashboard/page";
-
 interface IMacroSummaryProps {
   title: string;
   curr: number;
   left: number;
 }
 
-const page = () => {
+const Page = () => {
+  const { loading, userData } = useUserAuth();
+  const router = useRouter();
+  if (loading) return <div>Loading...</div>;
+  if (!userData) {
+    alert("Please login to view this page. Redirecting to login page...");
+    router.push("/login");
+  }
   return (
     <div className="container pt-12 flex flex-col  justify-center gap-6">
       <div className="w-full mb-2">
@@ -182,4 +190,4 @@ export const TopFoodCard = () => {
     </div>
   );
 };
-export default page;
+export default Page;

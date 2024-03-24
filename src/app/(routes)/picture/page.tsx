@@ -2,8 +2,11 @@
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { extractMealInfoFromImage } from "@/lib/ai";
+import { useUserAuth } from "@/utils/hooks/useUserAuth";
 import { ArrowLeft, Camera, Menu } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { FoodCard } from "../dashboard/page";
 const Page = () => {
   const NavBarSpecial = () => {
     return (
@@ -31,6 +34,9 @@ export const CustomWebcam = () => {
   const [imgSrc, setImgSrc] = useState<string | null>(null);
   const [imageData, setImageData] = useState<string | null>(null);
   const [retakeState, setRetakeState] = useState<boolean>(false);
+  const { loading, userData } = useUserAuth();
+  const router = useRouter();
+
   const startCamera = useCallback(async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -54,6 +60,7 @@ export const CustomWebcam = () => {
         const imageSrc = canvas.toDataURL("image/png");
         setImgSrc(imageSrc);
         const response = await extractMealInfoFromImage(imageSrc);
+        console.log(response);
         setImageData(JSON.stringify(response, null, 2));
       }
     }
@@ -67,7 +74,11 @@ export const CustomWebcam = () => {
   useEffect(() => {
     startCamera();
   }, [startCamera, retakeState]);
-
+  if (loading) return <div>Loading...</div>;
+  if (!userData) {
+    alert("Please login to view this page. Redirecting to login page...");
+    router.push("/login");
+  }
   return (
     <div className="flex flex-col items-center gap-10">
       {imgSrc ? (

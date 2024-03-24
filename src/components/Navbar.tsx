@@ -7,6 +7,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useUserAuth } from "@/utils/hooks/useUserAuth";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import {
   BarChart3,
   Camera,
@@ -16,7 +18,7 @@ import {
   LucideIcon,
   Menu,
 } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { ModeToggle } from "./dark-mode";
 const Navbar = ({ special: Special }: { special: any }) => {
@@ -43,6 +45,19 @@ const Navbar = ({ special: Special }: { special: any }) => {
       route: "/stats",
     },
   ];
+  const supabase = createClientComponentClient();
+  const router = useRouter();
+  const { userData, loading } = useUserAuth();
+  const handleLogout = async () => {
+    console.log("logout");
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      alert(error.message);
+    } else {
+      router.push("/");
+    }
+  };
+
   return (
     <div className="flex w-full justify-between h-[60px] items-center mt-5">
       <Special />
@@ -68,7 +83,15 @@ const Navbar = ({ special: Special }: { special: any }) => {
                 );
               })}
             </div>
-            <NavbarRouteButton icon={LogOut} name="Logout" route="/logout" />
+            {userData && (
+              <div
+                className={`flex p-3 w-full gap-3 rounded-lg cursor-pointer`}
+                onClick={handleLogout}
+              >
+                <LogOut />
+                <p className="font-medium">Logout</p>
+              </div>
+            )}
           </div>
         </SheetContent>
       </Sheet>
@@ -86,10 +109,9 @@ const NavbarRouteButton = ({
   icon: LucideIcon;
   name: string;
   selected?: string;
-  route: string;
+  route?: string;
 }) => {
   const pathname = usePathname();
-  console.log(pathname, route);
   return (
     <a
       href={route}

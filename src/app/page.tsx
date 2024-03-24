@@ -3,6 +3,7 @@
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useUserAuth } from "@/utils/hooks/useUserAuth";
 import { Github, Linkedin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,6 +25,8 @@ export default function Home() {
       teamRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+  const { userData, loading } = useUserAuth();
+  console.log(userData);
   return (
     <div className="flex flex-col items-start container gap-3">
       <Navbar special={RenderSpecial} />
