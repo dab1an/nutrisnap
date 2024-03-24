@@ -1,4 +1,5 @@
 "use client";
+import LoadingPage from "@/components/LoadingPage";
 import Navbar from "@/components/Navbar";
 import ImageUploader from "@/components/image-taker";
 import { Button } from "@/components/ui/button";
@@ -83,7 +84,7 @@ export const CustomWebcam = () => {
   useEffect(() => {
     startCamera();
   }, [startCamera, retakeState]);
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <LoadingPage />;
   if (!loading && !userData) {
     router.push("/login");
   }

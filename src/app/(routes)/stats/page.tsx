@@ -1,5 +1,6 @@
 "use client";
 import Avatar from "@/components/Avatar";
+import LoadingPage from "@/components/LoadingPage";
 import Navbar from "@/components/Navbar";
 import CompareCard from "@/components/stats/CompareCard";
 import StatsCard from "@/components/stats/StatsCard";
@@ -11,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useUserAuth } from "@/utils/hooks/useUserAuth";
 import React, { useState } from "react";
 export default function Page() {
   const [macroType, setMacroType] = useState<string>("protein");
@@ -18,6 +20,22 @@ export default function Page() {
     setMacroType(type);
   };
 
+  const { userData, loading } = useUserAuth();
+  const atLoc = userData?.email?.indexOf("@");
+  const email = userData?.email?.slice(0, atLoc);
+  const ProfilePhoto = () => {
+    if (loading) return <LoadingPage />;
+    return (
+      <div className=" flex items-center justify-between gap-3">
+        <Avatar email="alexvera@gmail.com" />
+        <div className="flex flex-col font-bold text-sm">
+          <p>Hey {email},</p>
+          <p>Today is {new Date().toLocaleDateString()}</p>
+        </div>
+      </div>
+    );
+  };
+  if (loading) return <LoadingPage />;
   return (
     <div className="container flex flex-col  justify-center items-center gap-6">
       <div className="w-full mb-2">
@@ -30,18 +48,6 @@ export default function Page() {
     </div>
   );
 }
-
-export const ProfilePhoto = (img: string) => {
-  return (
-    <div className=" flex items-center justify-between gap-3">
-      <Avatar email="alexvera@gmail.com" />
-      <div className="flex flex-col font-bold text-sm">
-        <p>Hey Jacob,</p>
-        <p>Today is October 16</p>
-      </div>
-    </div>
-  );
-};
 
 export const TopFoodCard = ({
   handleChangeMacroType,

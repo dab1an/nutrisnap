@@ -1,6 +1,6 @@
-import React from "react";
-import { useState, useEffect } from "react";
 import { FoodCard } from "@/app/(routes)/dashboard/page";
+import { Meal } from "@/types/meal";
+import React, { useEffect, useState } from "react";
 
 interface IFoodCardProps {
   macroType: string;
@@ -76,20 +76,10 @@ const TopFoodCards = ({ macroType }: IFoodCardProps) => {
       return sortedMeals;
     }
   };
-
   return (
     <div className="w-full">
-      {getTopThreeHighMacroMeals().map((meal: any, index: number) => (
-        <FoodCard
-          key={index}
-          name={meal.name}
-          calories={meal.calories}
-          protein={meal.protein}
-          carbs={meal.carbs}
-          fat={meal.fat}
-          fiber={meal.fiber}
-          sugar={meal.sugar}
-        />
+      {getTopThreeHighMacroMeals().map((meal: Meal, index: number) => (
+        <FoodCard key={index} meal={meal} />
       ))}
     </div>
   );

@@ -6,9 +6,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 const ImageUploader: React.FC = () => {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
-  const [imageData, setImageData] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [finished, setFinished] = useState<boolean>(false);
   const handleFileChange = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -52,15 +50,11 @@ const ImageUploader: React.FC = () => {
   const handleSubmit = async () => {
     if (!imageSrc) return;
     setLoading(true);
-    const response = await extractMealInfoFromImage(imageSrc);
+    await extractMealInfoFromImage(imageSrc);
+    router.push("/dashboard");
     setLoading(false);
-    setFinished(true);
-    console.log(response);
-    setImageData(JSON.stringify(response, null, 2));
   };
   const RenderButton = () => {
-    if (finished)
-      return <Button onClick={() => router.push("/dashboard")}>Done!</Button>;
     if (!imageSrc) return null;
     if (imageSrc && !loading) {
       return <Button onClick={handleSubmit}>Submit!</Button>;
@@ -78,9 +72,7 @@ const ImageUploader: React.FC = () => {
       {imageSrc && (
         <img src={imageSrc} alt="Selected" style={{ height: "300px" }} />
       )}
-
       <RenderButton />
-      {imageData && <pre>{imageData}</pre>}
     </div>
   );
 };

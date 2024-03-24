@@ -1,4 +1,5 @@
 "use client";
+import LoadingPage from "@/components/LoadingPage";
 import Navbar from "@/components/Navbar";
 import {
   Accordion,
@@ -13,7 +14,6 @@ import { useUserAuth } from "@/utils/hooks/useUserAuth";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { VictoryPie } from "victory";
-
 interface IProgressItemProps {
   title: string;
   value: number;
@@ -76,21 +76,22 @@ const Page = () => {
       console.error("Error", error);
     }
   };
-
+  const { loading, userData } = useUserAuth();
   const NavSpecial = () => {
+    const atLoc = userData?.email?.indexOf("@");
+    const email = userData?.email?.slice(0, atLoc);
     return (
       <div className="flex flex-col">
         <h1 className="font-extrabold text-[26px]">Welcome back,</h1>
-        <h1 className="font-extrabold text-[26px] text-primary">Jacob</h1>
+        <h1 className="font-extrabold text-[26px] text-primary">{email}</h1>
       </div>
     );
   };
 
   const router = useRouter();
-  const { loading, userData } = useUserAuth();
   const [currentDate, setCurrentDate] = useState(null);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <LoadingPage />;
   if (!loading && !userData) {
     router.push("/login");
   }
@@ -103,8 +104,8 @@ const Page = () => {
         <VictoryPie
           colorScale={["gray", "#539BF8"]}
           data={[
-            { x: "total", y: 10500 },
-            { x: "blue", y: stats ? stats.total_calories : 0 },
+            { x: "total", y: 2500 },
+            { x: "blue", y: stats ? parseInt(stats.total_calories) : 0 },
           ]}
           startAngle={90}
           endAngle={-90}
@@ -115,7 +116,7 @@ const Page = () => {
           <p className="font-bold text-3xl">
             {stats ? stats.total_calories : 0}
           </p>
-          <p className="font-bold text-2x">/ 10500 cal</p>
+          <p className="font-bold text-2x">/ 2500 cal</p>
         </div>
       </div>
       <div className="-mt-28 w-full z-10">
