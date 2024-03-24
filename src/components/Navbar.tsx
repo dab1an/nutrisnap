@@ -1,3 +1,4 @@
+"use client";
 import {
   Sheet,
   SheetContent,
@@ -10,6 +11,7 @@ import {
   BarChart3,
   Camera,
   Home,
+  LayoutDashboard,
   LogOut,
   LucideIcon,
   Menu,
@@ -24,6 +26,11 @@ const Navbar = ({ special: Special }: { special: any }) => {
       icon: Home,
       name: "Home",
       route: "/",
+    },
+    {
+      icon: LayoutDashboard,
+      name: "Dashboard",
+      route: "/dashboard",
     },
     {
       icon: Camera,

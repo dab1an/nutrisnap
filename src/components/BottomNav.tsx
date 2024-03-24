@@ -1,5 +1,5 @@
 "use client";
-import { BarChart3, Camera, Home } from "lucide-react";
+import { BarChart3, Camera, Home, LayoutDashboard } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React from "react";
 const BottomNav = () => {
@@ -8,6 +8,11 @@ const BottomNav = () => {
       icon: Home,
       name: "Home",
       route: "/",
+    },
+    {
+      icon: LayoutDashboard,
+      name: "Dashboard",
+      route: "/dashboard",
     },
     {
       icon: Camera,
@@ -22,7 +27,7 @@ const BottomNav = () => {
   ];
   const pathname = usePathname();
   return (
-    <div className="absolute bottom-0 w-full border-t-2 border-foreground/40 h-[60px] flex items-center justify-evenly">
+    <div className="fixed bg-background bottom-0 w-full border-t-2 border-foreground/40 h-[60px] flex items-center justify-evenly">
       {items.map((item) => {
         return (
           <item.icon
