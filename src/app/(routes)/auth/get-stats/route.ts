@@ -105,9 +105,9 @@ export async function POST(request: NextRequest) {
 
     previous = previous?.rows[0];
     const res = { current: current[0], previous } as Stats;
-    statsSchema.parse(res);
+    const parsedRes = statsSchema.parse(res);
     console.log(res);
-    return NextResponse.json({ data: res }, { status: 200 });
+    return NextResponse.json({ data: parsedRes }, { status: 200 });
   } catch (error: any) {
     console.error(error);
     return NextResponse.json({ error: error.message }, { status: 500 });
