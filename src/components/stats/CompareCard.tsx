@@ -9,8 +9,17 @@ import { Stats } from "@/types/queries";
 import React, { use, useEffect, useState } from "react";
 
 const CompareCard = ({ stats }: { stats: Stats }) => {
+  const MACRO_COLOR_MAP: { [key: string]: number } = {
+    calorie: 1, //more calories is bad
+    protein: 0, //more protein is good
+    fat: 1, //more fat is bad
+    carbs: 1, //more carbs is bad
+    sugar: 1, //more sugar is bad
+  };
+
   //return a string that says how much higher or lower the percentage difference is
-  function percentageDifference(val1: number, val2: number) {
+  function percentageDifference(val1: number, val2: number, macro: string) {
+    const colors = ["text-primary", "text-destructive"];
     const difference = val2 - val1;
     const percentageDiff = Math.round((difference / val1) * 100);
     const str =
@@ -20,7 +29,10 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
           (percentageDiff > 0 ? "% higher " : "% lower ");
     return {
       str: str,
-      color: percentageDiff > 0 ? "text-primary" : "text-destructive",
+      color:
+        percentageDiff > 0
+          ? colors[MACRO_COLOR_MAP[macro]]
+          : colors[Math.abs(1 - MACRO_COLOR_MAP[macro])],
     };
   }
 
@@ -35,7 +47,8 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
                 {(() => {
                   const percentage = percentageDifference(
                     stats.previous.total_calories,
-                    stats.current.total_calories
+                    stats.current.total_calories,
+                    "calorie"
                   );
 
                   return <h1 className={percentage.color}>{percentage.str}</h1>;
@@ -52,7 +65,8 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
                   {(() => {
                     const percentage = percentageDifference(
                       stats.previous.total_protein,
-                      stats.current.total_protein
+                      stats.current.total_protein,
+                      "protein"
                     );
 
                     return (
@@ -72,7 +86,8 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
                   {(() => {
                     const percentage = percentageDifference(
                       stats.previous.total_fat,
-                      stats.current.total_fat
+                      stats.current.total_fat,
+                      "fat"
                     );
 
                     return (
@@ -92,7 +107,8 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
                   {(() => {
                     const percentage = percentageDifference(
                       stats.previous.total_carbs,
-                      stats.current.total_carbs
+                      stats.current.total_carbs,
+                      "carbs"
                     );
 
                     return (
@@ -112,7 +128,8 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
                   {(() => {
                     const percentage = percentageDifference(
                       stats.previous.total_sugar,
-                      stats.current.total_sugar
+                      stats.current.total_sugar,
+                      "sugar"
                     );
 
                     return (
@@ -132,7 +149,8 @@ const CompareCard = ({ stats }: { stats: Stats }) => {
                   {(() => {
                     const percentage = percentageDifference(
                       stats.previous.total_fiber,
-                      stats.current.total_fiber
+                      stats.current.total_fiber,
+                      "fiber"
                     );
 
                     return (
