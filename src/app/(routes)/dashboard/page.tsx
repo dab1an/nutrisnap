@@ -6,9 +6,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Progress } from "@/components/ui/progress";
+import { useUserAuth } from "@/utils/hooks/useUserAuth";
 import React, { useState } from "react";
 import { VictoryPie } from "victory";
-
 interface IProgressItemProps {
   title: string;
   value: number;
@@ -84,7 +84,9 @@ function extractDateInfo(dateString: string) {
 
   return { year, month, day };
 }
-const page = () => {
+const Page = () => {
+  const { loading, userData } = useUserAuth();
+  console.log(loading, userData);
   return (
     <div className="container">
       <h1>Welcome back,</h1>
@@ -134,7 +136,7 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
 
 const ProgressItem = ({ title, value, progressValue }: IProgressItemProps) => {
   return (
