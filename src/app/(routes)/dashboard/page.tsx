@@ -192,7 +192,6 @@ const ProgressItem = ({ title, value, progressValue }: IProgressItemProps) => {
 
 export const FoodCard = ({ meal }: { meal: Meal }) => {
   const { name, calories, protein, carbs, fat, fiber, sugar, img } = meal;
-  console.log(meal);
   const [showCalories, setShowCalories] = useState(false);
 
   const imageUrl = Buffer.from((img as any).data).toString();
